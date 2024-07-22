@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="navbar" id="myNavbar">
+        <a href="#">GFG</a>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+
+        <a href="javascript:void(0);"
+           class="icon"
+           onclick="toggleMenu()">
+            &#9776;
+        </a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            let navbar = document.getElementById("myNavbar");
+            navbar.className = navbar.className === "navbar" ?
+                               "navbar responsive" : "navbar";
+        }
+    </script>
+
+<div id="textWithImage">
+    <svg viewbox="0 0 100 40">
+        <defs>
+          <mask id="mask" x="0" y="0" width="100" height="50">
+            <rect x="0" y="0" width="100" height="40" fill="#fff"/>
+            <text text-anchor="middle" x="50" y="18" dy="1">Bus stops   </text>
+            <text text-anchor="middle" x="50" y="30" dy="1">D5M</text>
+          </mask>
+        </defs>
+        <rect x="5" y="5" width="90" height="30" mask="url(#mask)" fill-opacity="1.0"/>    
+      </svg>
+<div class="container">
+
+    <div class="d-flex flex-row">
+        
+        <div class="card">
+            <div class="card-image"><image src="https://th.bing.com/th/id/OIP.UK-sDy4fMAQfK9UZ5mdvlwAAAA?w=258&h=180&c=7&r=0&o=5&pid=1.7"></image></div>
+            <div class="category"> MOA </div>
+            <div class="heading"> 6th of October and Sheikh Zayed </div>
+                <div class="author"> From <span class="name">Sunday through Thursday</span> 8AM Sharp</div>
+            </div>
+        <div class="card">
+            <div class="card-image"></div>
+            <div class="category"> Haram </div>
+            <div class="heading">Haram and Pyramid Gardens</div>
+                <div class="author"> From <span class="name">Sunday through Thursday</span> 8AM Sharp</div>
+            </div>
+        <div class="card">
+            <div class="card-image"></div>
+            <div class="category"> The Settlements </div>
+            <div class="heading"> Tagamoa and Nasr City </div>
+                <div class="author"> From <span class="name">Sunday through Thursday</span>8AM Sharp</div>
+            </div>
+        <div class="card">
+            <div class="card-image"></div>
+            <div class="category"> Tahrir </div>
+            <div class="heading"> Downtown Cairo </div>
+                <div class="author"> From <span class="name">Sunday through Thursday</span>8AM Sharp</div>
+            </div>
+        <div class="card">
+            <div class="card-image"></div>
+            <div class="category"> Maadi </div>
+            <div class="heading"> Maadi </div>
+                <div class="author"> From <span class="name">Sunday through Thursday</span>8AM Sharp</div>
+            </div>
+        <div class="card">
+            <div class="card-image"></div>
+            <div class="category"> Hosary </div>
+            <div class="heading"> 6th Of October </div>
+                <div class="author"> From <span class="name">Sunday through Thursday</span>8AM Sharp</div>
+            </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>
