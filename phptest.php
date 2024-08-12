@@ -14,7 +14,7 @@ if (!$conn) {
 }
 echo "Connected successfully\n";
 
-$sql = "SELECT * FROM test WHERE Name = '$Name' AND Password = '$Password'";
+$sql = "SELECT * FROM admin WHERE Username = '$Name' AND Password = '$Password'";
 $result = mysqli_query($conn, $sql);
 
 if ($result && mysqli_num_rows($result) == 1) {
@@ -22,7 +22,7 @@ if ($result && mysqli_num_rows($result) == 1) {
     
     $_SESSION['Name'] = $row['Name'];  
     echo "Login successful";
-    header("Location: landing page/index.html");
+    header("Location:admin2.php");
 } else {
     echo "Invalid login";
 }
