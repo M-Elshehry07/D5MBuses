@@ -16,6 +16,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: "Poppins", sans-serif;
+      scroll-behavior: smooth;
     }
 
     :root {
@@ -47,6 +48,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
     }
 
     .logo {
@@ -319,8 +325,16 @@
     }
 
     .view {
-      height: 35px;
-      width: 90px;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #5500cb;
+      color: white;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .editView {
       border-radius: 8px;
       background-color: #5500cb;
       color: white;
@@ -589,20 +603,14 @@
         display: inline-block;
         margin-right: 20px;
       }
-
-
-
     }
   </style>
 </head>
 
 <body>
   <header style="background-color: white;">
-    <img src="images/Marakez.PNG" alt="LOGO" style="
-        height: 50px;
-    ">
+    <img src="images/Marakez.PNG" alt="LOGO" style="height: 50px;" />
   </header>
-
   <div class="main-container">
     <div class="navcontainer" style="
         margin-right: 50px;
@@ -612,52 +620,39 @@
       <nav class="nav">
         <div class="nav-upper-options">
           <div class="nav-option option1">
-
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210182148/Untitled-design-(29).png"
               class="nav-img" alt="dashboard">
             <a class="nav-link active" href="#dashboard" style="color: white;">Dashboard</a>
           </div>
-
           <div class="option2 nav-option">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183322/9.png" class="nav-img"
               alt="articles">
             <a class="nav-link active" href="#Manageroutes">Manage Points</a>
           </div>
-
           <div class="nav-option option3">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png" class="nav-img"
               alt="report">
             <a class="nav-link" href="#buses">Manage Buses</a>
-
           </div>
-
           <div class="nav-option option4">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/6.png" class="nav-img"
               alt="institution">
-            <a class="nav-link" href="#Manageroutes">Add new point</a>
-
-
+            <a class="nav-link" href="#schedules">Manage reservarions</a>
           </div>
-
           <div class="nav-option option5">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183323/10.png" class="nav-img"
               alt="blog">
             <a class="nav-link" href="#bookings">Manage Tickets</a>
           </div>
-
-
-
           <div class="nav-option logout">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/7.png" class="nav-img"
               alt="logout">
             <h3>Logout</h3>
           </div>
-
         </div>
       </nav>
     </div>
     <div class="main">
-
       <div class="searchbar2">
         <input type="text" name="" id="" placeholder="Search">
         <div class="searchbtn">
@@ -665,40 +660,26 @@
             class="icn srchicn" alt="search-button">
         </div>
       </div>
-
       <div class="box-container">
-
         <div class="box box1">
           <div class="text">
             <h6 class="topic-heading">Total Bookings</h6>
             <h2 class="topic">Article Views</h2>
           </div>
-
         </div>
-
-
-
-
         <div class="box box4">
           <div class="text">
             <h2 class="topic-heading">70</h2>
             <h2 class="topic">Number of Buses</h2>
           </div>
-
           <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210185029/13.png" alt="published">
         </div>
       </div>
-
       <div class="report-container " id="Manageroutes">
         <div class="report-header">
-
           <h1 class="recent-Articles">Manage Points</h1>
-          <button class="view" style=" height: 45px; "><a href="add-point.php">Add New Point </a></button>
-
+          <a href="add-point.php"><button class="view">Add New Point </button></a>
         </div>
-
-
-
         <div class="report-body">
           <div class="report-topic-heading">
             <h3 class="t-op">Route ID</h3>
@@ -706,7 +687,6 @@
             <h3 class="t-op" style="margin-right: 30px;">End Point</h3>
             <h3 class="t-op">Actions</h3>
           </div>
-
           <div class="items">
             <div class="item1">
               <h3 class="t-op-nextlvl">Article 73</h3>
@@ -719,16 +699,12 @@
                             bottom: 20px;
                             border-color: white;
                         ">
-                <button class="view" style="
+                <button class="editView" style="
                             margin-bottom: 3px;
                         "> Edit</button>
-                <button class="view">Delete</button>
+                <button class="editView">Delete</button>
               </div>
-
             </div>
-
-
-
             <div class="item1">
               <h3 class="t-op-nextlvl">Article 65</h3>
               <h3 class="t-op-nextlvl">1.3k</h3>
@@ -740,25 +716,20 @@
                             bottom: 20px;
                             border-color: white;
                         ">
-                <button class="view" style="
+                <button class="editView" style="
                             margin-bottom: 3px;
                         "> Edit</button>
-                <button class="view">Delete</button>
+                <button class="editView">Delete</button>
               </div>
-
             </div>
-
           </div>
         </div>
       </div>
       <div class="report-container" id="buses">
         <div class="report-header">
           <h1 class="recent-Articles">Manage Buses</h1>
-
-          <button class="view" style=" height: 45px; "><a href="add-bus.php">Add New Bus </a></button>
-
+          <a href="add-bus.php"><button class="view">Add New Bus </button></a>
         </div>
-
         <div class="report-body">
           <div class="report-topic-heading">
             <h3 class="t-op">Bus ID</h3>
@@ -766,7 +737,6 @@
             <h3 class="t-op" style="margin-right: 20px;">type</h3>
             <h3 class="t-op">Actions</h3>
           </div>
-
           <div class="items">
             <div class="item1">
               <h3 class="t-op-nextlvl">Article 73</h3>
@@ -779,16 +749,12 @@
                             bottom: 20px;
                             border-color: white;
                         ">
-                <button class="view" style="
+                <button class="editView" style="
                             margin-bottom: 3px;
                         "> Edit</button>
-                <button class="view">Delete</button>
+                <button class="editView">Delete</button>
               </div>
-
             </div>
-
-
-
             <div class="item1">
               <h3 class="t-op-nextlvl">Article 65</h3>
               <h3 class="t-op-nextlvl">1.3k</h3>
@@ -800,139 +766,17 @@
                             bottom: 20px;
                             border-color: white;
                         ">
-                <button class="view" style="
+                <button class="editView" style="
                             margin-bottom: 3px;
                         "> Edit</button>
-                <button class="view">Delete</button>
+                <button class="editView">Delete</button>
               </div>
-
             </div>
-
           </div>
         </div>
       </div>
-      <div class="report-container" id="schedules">
-        <div class="report-header">
-          <h1 class="recent-Articles">Manage reservarions</h1>
-          <button class="view" style=" height: 45px; "><a href="add-schedule.php">Add New Schedule </a></button>
-
-        </div>
-
-        <div class="report-body">
-          <div class="report-topic-heading">
-            <h3 class="t-op">Route</h3>
-            <h3 class="t-op">Departure</h3>
-            <h3 class="t-op" style="margin-right: 25px;">Arrival</h3>
-            <h3 class="t-op">Actions</h3>
-          </div>
-
-          <div class="items">
-            <div class="item1">
-              <h3 class="t-op-nextlvl">Article 73</h3>
-              <h3 class="t-op-nextlvl">2.9k</h3>
-              <h3 class="t-op-nextlvl">210</h3>
-              <div class="card" style="
-                            left: 8px;
-                            height: 52px;
-                            width: 82px;
-                            bottom: 20px;
-                            border-color: white;
-                        ">
-                <button class="view" style="
-                            margin-bottom: 3px;
-                        "> Edit</button>
-                <button class="view">Delete</button>
-              </div>
-
-            </div>
-
-
-
-            <div class="item1">
-              <h3 class="t-op-nextlvl">Article 65</h3>
-              <h3 class="t-op-nextlvl">1.3k</h3>
-              <h3 class="t-op-nextlvl">220</h3>
-              <div class="card" style="
-                            left: 8px;
-                            height: 52px;
-                            width: 82px;
-                            bottom: 20px;
-                            border-color: white;
-                        ">
-                <button class="view" style="
-                            margin-bottom: 3px;
-                        "> Edit</button>
-                <button class="view">Delete</button>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="report-container" id="bookings">
-        <div class="report-header">
-          <h1 class="recent-Articles">Manage Tickets</h1>
-          <button class="view" style=" height: 45px; "> view all Tickets</a></button>
-
-        </div>
-
-        <div class="report-body">
-          <div class="report-topic-heading">
-            <h3 class="t-op">user</h3>
-            <h3 class="t-op" style="margin-left: 65px;">Route</h3>
-            <h3 class="t-op">seat Number</h3>
-            <h3 class="t-op">Actions</h3>
-          </div>
-
-          <div class="items">
-            <div class="item1">
-              <h3 class="t-op-nextlvl">Article 73</h3>
-              <h3 class="t-op-nextlvl">2.9k</h3>
-              <h3 class="t-op-nextlvl">210</h3>
-              <div class="card" style="
-                            left: 8px;
-                            height: 52px;
-                            width: 82px;
-                            bottom: 20px;
-                            border-color: white;
-                        ">
-                <button class="view" style="
-                            margin-bottom: 3px;
-                        "> Edit</button>
-                <button class="view">Delete</button>
-              </div>
-
-            </div>
-
-
-
-            <div class="item1">
-              <h3 class="t-op-nextlvl">Article 65</h3>
-              <h3 class="t-op-nextlvl">1.3k</h3>
-              <h3 class="t-op-nextlvl">220</h3>
-              <div class="card" style="
-                            left: 8px;
-                            height: 52px;
-                            width: 82px;
-                            bottom: 20px;
-                            border-color: white;
-                        ">
-                <button class="view" style="
-                            margin-bottom: 3px;
-                        "> Edit</button>
-                <button class="view">Delete</button>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
-
 </body>
 
 </html>
