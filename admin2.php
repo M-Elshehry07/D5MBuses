@@ -160,7 +160,7 @@
     }
 
     .main::-webkit-scrollbar {
-      width: 5px;
+      width: 7px;
     }
 
     .main::-webkit-scrollbar-track {
