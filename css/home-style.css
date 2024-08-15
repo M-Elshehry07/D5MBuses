@@ -82,7 +82,7 @@ body {
   border-left: 8px solid #696969;
   border-top: 8px solid #696969;
   cursor: pointer;
-	z-index: 1;
+  z-index: 1;
 }
 
 #slider-container .btn:hover {
@@ -170,11 +170,57 @@ body {
 }
 
 @media only screen and (max-width: 550px) {
-	#slider-container .btn{
-		top: calc(55% - 15px);
-	}
+  #slider-container .btn {
+    top: calc(55% - 15px);
+  }
+
   #slider-container #slider .slide {
     width: calc(10% - 20px);
   }
 }
 
+/* Login Button */
+
+.loginBtn {
+  --color: #3f0097;
+  font-family: inherit;
+  display: inline-block;
+  width: 6em;
+  height: 2.4em;
+  line-height: 1.8em;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 3px 5px 0px 5px;
+  font-size: 17px;
+  z-index: 1;
+  color: white;
+  background-color: #282828;
+  border: 2px solid var(--color);
+  border-radius: 6px;
+  position: relative;
+}
+
+.loginBtn::before {
+  position: absolute;
+  content: "";
+  background: var(--color);
+  width: 150px;
+  height: 200px;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.loginBtn:hover {
+  color: white;
+}
+
+.loginBtn:before {
+  top: 100%;
+  left: 100%;
+  transition: 0.3s all;
+}
+
+.loginBtn:hover::before {
+  top: -30px;
+  left: -30px;
+}
