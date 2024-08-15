@@ -2,6 +2,18 @@
   font-family: 'Lato', Poppins, Arial, Helvetica, sans-serif;
 }
 
+body::-webkit-scrollbar-thumb {
+  background-color: #0d6efd;
+}
+
+body::-webkit-scrollbar {
+  width: 7px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #9e9e9eb2;
+}
+
 .c-item {
   height: 500px;
 }
