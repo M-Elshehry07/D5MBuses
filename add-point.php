@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php 
-    include('connection.php');
-    ?>
+<?php
+include('connection.php');
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,10 @@
     <style>
         body {
             background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .forget-pwd>a {

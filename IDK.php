@@ -8,5 +8,3 @@
 	#header('Location: '.$uri.'/dashboard/');
 	header('Location: '.$uri.'/test.html');
 	exit;
-?>
-Something is wrong with the XAMPP installation :-(
