@@ -13,12 +13,12 @@ if (!$conn) {
 echo "Connected successfully\n";
 
 
-$sql = "INSERT INTO point(Name) VALUES ('$Points')";
+$sql = "INSERT INTO points(point_name) VALUES ('$Points')";
 $result = mysqli_query($conn, $sql);
 
 if ($result) {
     echo "Point Added";
-    header("Location: add-point.php");
+    header("Location: admin2.php");
 } else {
     echo "Failure";
 }

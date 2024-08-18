@@ -95,12 +95,6 @@ require_once('connection.php');
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                        <input id="forgetAnswer" name="info" placeholder="Enter Bus Info"
-                                            class="form-control" type="text" required>
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-addon"><i
-                                                class="glyphicon glyphicon-envelope color-blue"></i></span>
                                         <input id="forgetAnswer" name="numSeats" placeholder="Enter number of seats"
                                             class="form-control" type="text" required>
                                     </div>
