@@ -7,8 +7,7 @@ $dbname = "test";
 $conn = mysqli_connect($servername, $username, $password, $dbname, 3306);
 $Name = $_GET['name'];
 // $Bus = $_POST['bus'];
-$Email = $_GET['email'];
-$Phone = $_GET['phone'];
+$Phone = sha1($_GET['password']);
 // $Point = $_POST['point'];
 // $Seat = $_POST['seat'];
 // $Time[] = $_POST['time'];
@@ -19,7 +18,7 @@ if (!$conn) {
 echo "Connected successfully\n";
 
 
-$sql1 = "INSERT INTO ticket(Name, Email, Phone) VALUES ('$Name', '$Email', '$Phone')";
+$sql1 = "INSERT INTO admin(username, Password) VALUES ('$Name', '$Phone')";
 $result = mysqli_query($conn, $sql1);
 
 if ($result) {

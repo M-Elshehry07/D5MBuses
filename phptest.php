@@ -6,7 +6,7 @@ $password = "";
 $dbname = "test";
 $conn = mysqli_connect($servername, $username, $password, $dbname, 3306);
 $Name = $_GET['name'];
-$Password = $_GET['password'];
+$Password = sha1($_GET['password']);
 
 
 if (!$conn) {
