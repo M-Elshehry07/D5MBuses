@@ -9,7 +9,7 @@ require_once('connection.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-    <title>Document</title>
+    <title>Add Bus</title>
     <style>
         body {
             background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
