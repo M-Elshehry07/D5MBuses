@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include('connection.php');
+require_once('connection.php');
 ?>
 
 <head>
