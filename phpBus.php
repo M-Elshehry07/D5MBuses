@@ -8,12 +8,11 @@ $conn = mysqli_connect($servername, $username, $password, $dbname, 3306);
 $BusN = $_GET['Name'];
 $Plates = $_GET['plates'];
 $Info = $_GET['info'];
+$seats = $_GET['numSeats'];
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-echo "Connected successfully\n";
-
 
 $sql = "INSERT INTO bus(BusName, Info, Plates) VALUES ('$BusN', '$Info', '$Plates')";
 $result = mysqli_query($conn, $sql);

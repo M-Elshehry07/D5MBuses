@@ -98,6 +98,12 @@ include('connection.php');
                                         <input id="forgetAnswer" name="info" placeholder="Enter Bus Info"
                                             class="form-control" type="text" required>
                                     </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-addon"><i
+                                                class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                        <input id="forgetAnswer" name="numSeats" placeholder="Enter number of seats"
+                                            class="form-control" type="text" required>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <input class="btn btn-lg btn-block btnForget" value="Submit" type="submit">
