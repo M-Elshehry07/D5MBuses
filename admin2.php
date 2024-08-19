@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
@@ -165,6 +167,20 @@
 
     .main::-webkit-scrollbar-track {
       background-color: #9e9e9eb2;
+    }
+
+    .report-body::-webkit-scrollbar-thumb {
+      background-image:
+        linear-gradient(to bottom, rgb(0, 0, 85), rgb(0, 0, 50));
+      border-radius: 10px;
+    }
+
+    .report-body::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .report-body::-webkit-scrollbar-track {
+      background-color: transparent;
     }
 
     .box-container {
@@ -345,13 +361,15 @@
 
     .report-body {
       max-width: 1160px;
-      overflow-x: auto;
+      overflow-x: hidden;
       padding: 20px;
+      max-height: 200px;
+      overflow-y: auto;
     }
 
     .report-topic-heading,
     .item1 {
-      width: 1120px;
+      width: 1090px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -363,7 +381,7 @@
     }
 
     .items {
-      width: 1120px;
+      width: 1000px;
       margin-top: 15px;
     }
 
@@ -615,8 +633,7 @@
     <div class="navcontainer" style="
         margin-right: 50px;
         padding-right: 0px;
-        width: 300px;
-    ">
+        width: 300px;">
       <nav class="nav">
         <div class="nav-upper-options">
           <div class="nav-option option1">
@@ -627,12 +644,12 @@
           <div class="option2 nav-option">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183322/9.png" class="nav-img"
               alt="articles">
-            <a class="nav-link active" href="#Manageroutes">Manage Points</a>
+            <a class="nav-link active" href="#Manageroutes">Admin</a>
           </div>
           <div class="nav-option option3">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png" class="nav-img"
               alt="report">
-            <a class="nav-link" href="#buses">Manage Buses</a>
+            <a class="nav-link" href="bus.php">Buses</a>
           </div>
           <div class="nav-option option4">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/6.png" class="nav-img"
@@ -682,46 +699,28 @@
         </div>
         <div class="report-body">
           <div class="report-topic-heading">
-            <h3 class="t-op">Route ID</h3>
-            <h3 class="t-op">Start Point</h3>
-            <h3 class="t-op" style="margin-right: 30px;">End Point</h3>
-            <h3 class="t-op">Actions</h3>
+            <h3 class="t-op">Point ID</h3>
+            <h3 class="t-op">Point Name</h3>
+            <h3 class="t-op">Location</h3>
           </div>
           <div class="items">
-            <div class="item1">
-              <h3 class="t-op-nextlvl">Article 73</h3>
-              <h3 class="t-op-nextlvl">2.9k</h3>
-              <h3 class="t-op-nextlvl">210</h3>
-              <div class="card" style="
-                            left: 8px;
-                            height: 52px;
-                            width: 82px;
-                            bottom: 20px;
-                            border-color: white;
-                        ">
-                <button class="editView" style="
-                            margin-bottom: 3px;
-                        "> Edit</button>
-                <button class="editView">Delete</button>
+            <?php
+            require_once('connection.php');
+            $query = "SELECT * FROM points";
+            $result = mysqli_query($conn, $query);
+            while ($row = mysqli_fetch_assoc($result)) {
+              $point_id = $row['point_id'];
+              $point_name = $row['point_name'];
+              $location = $row['location'];
+              ?>
+              <div class="item1">
+                <h3 class="t-op-nextlvl"><?php echo $point_id; ?></h3>
+                <h3 class="t-op-nextlvl"><?php echo $point_name; ?></h3>
+                <h3 class="t-op-nextlvl"><?php echo $location; ?></h3>
               </div>
-            </div>
-            <div class="item1">
-              <h3 class="t-op-nextlvl">Article 65</h3>
-              <h3 class="t-op-nextlvl">1.3k</h3>
-              <h3 class="t-op-nextlvl">220</h3>
-              <div class="card" style="
-                            left: 8px;
-                            height: 52px;
-                            width: 82px;
-                            bottom: 20px;
-                            border-color: white;
-                        ">
-                <button class="editView" style="
-                            margin-bottom: 3px;
-                        "> Edit</button>
-                <button class="editView">Delete</button>
-              </div>
-            </div>
+              <?php
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -777,6 +776,9 @@
       </div>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

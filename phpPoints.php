@@ -6,6 +6,7 @@ $password = "";
 $dbname = "test";
 $conn = mysqli_connect($servername, $username, $password, $dbname, 3306);
 $Points = $_GET['Name'];
+$Location = $_GET['loc'];
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
@@ -13,7 +14,7 @@ if (!$conn) {
 echo "Connected successfully\n";
 
 
-$sql = "INSERT INTO points(point_name) VALUES ('$Points')";
+$sql = "INSERT INTO points(point_name, location) VALUES ('$Points', '$Location')";
 $result = mysqli_query($conn, $sql);
 
 if ($result) {

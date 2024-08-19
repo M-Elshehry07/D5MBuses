@@ -80,6 +80,12 @@ require_once('connection.php');
                             <h2 class="text-center">Add Point</h2>
                             <form id="busForm" action="phpPoints.php" class="form" method="get">
                                 <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-addon"><i
+                                                class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                        <input id="forgetAnswer" name="loc" placeholder="Enter Location"
+                                            class="form-control" type="text">
+                                    </div>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>
