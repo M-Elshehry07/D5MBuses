@@ -315,8 +315,8 @@
     }
 
     .report-container {
-      min-height: 300px;
-      max-width: 1200px;
+      min-height: 500px;
+      max-width: 100%;
       margin: 70px auto 0px auto;
       background-color: #ffffff;
       border-radius: 30px;
@@ -339,7 +339,14 @@
       font-weight: 600;
       color: #5500cb;
     }
-
+.btn btn-ghost-secondary{padding: 10px;
+      border-radius: 8px;
+      background-color: #5500cb;
+      color: white;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+    }
     .view {
       padding: 10px;
       border-radius: 8px;
@@ -674,8 +681,8 @@
       <div id="openRolesSection" class="container content-space-1">
         <!-- Heading -->
         <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
-          <h2>Current opportunities</h2>
-          <p>We’re a truly global team with 17 offices around the world.</p>
+          <h2>Search Buses & Points</h2>
+          <p>Choose the area and the points deticted to the area, or search other.</p>
         </div>
         <!-- End Heading -->
 
@@ -690,7 +697,7 @@
                 <span class="input-group-prepend input-group-text">
                   <i class="bi-search"></i>
                 </span>
-                <input type="text" class="form-control form-control-lg" id="searchJobCareers" placeholder="Search job"
+                <input type="text" class="form-control form-control-lg" id="searchJobCareers" placeholder="Search"
                   aria-label="Search job">
               </div>
               <!-- End Form -->
@@ -702,7 +709,7 @@
 
               <!-- Select -->
               <select class="form-select form-select-lg" id="locationsJobCareers" aria-label="Select location">
-                <option selected>All locations</option>
+                <option selected>Area</option>
                 <option value="1">London</option>
                 <option value="2">San Francisco</option>
                 <option value="3">Others</option>
@@ -716,7 +723,7 @@
 
               <!-- Select -->
               <select class="form-select form-select-lg" id="departmentsJobCareers" aria-label="Select department">
-                <option selected>All departments</option>
+                <option selected>Points</option>
                 <option value="1">Software Development</option>
                 <option value="2">Sales</option>
                 <option value="3">Business strategy</option>
@@ -731,7 +738,7 @@
         <!-- End Form -->
 
         <button type="button" class="btn btn-ghost-secondary">
-          <i class="bi-bell me-1"></i> Create alert
+          <i class="bi-bell me-1"></i> Search
         </button>
       </div>
       <!-- End List Directory -->
@@ -744,7 +751,6 @@
           <div class="report-topic-heading">
             <h3 class="t-op">Point ID</h3>
             <h3 class="t-op">Point Name</h3>
-            <h3 class="t-op">Location</h3>
           </div>
           <div class="items">
             <?php
@@ -752,14 +758,12 @@
             $query = "SELECT * FROM points";
             $result = mysqli_query($conn, $query);
             while ($row = mysqli_fetch_assoc($result)) {
-              $point_id = $row['point_id'];
+              $point_id = $row['ID'];
               $point_name = $row['point_name'];
-              $location = $row['location'];
               ?>
               <div class="item1">
                 <h3 class="t-op-nextlvl"><?php echo $point_id; ?></h3>
                 <h3 class="t-op-nextlvl"><?php echo $point_name; ?></h3>
-                <h3 class="t-op-nextlvl"><?php echo $location; ?></h3>
               </div>
               <?php
             }
