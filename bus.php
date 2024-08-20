@@ -796,7 +796,7 @@
             }
 
             // Fetch data from the database
-            $query = "SELECT * FROM buses";
+            $query = "SELECT * FROM bus";
             $result = mysqli_query($conn, $query);
 
             $stmt = $conn->prepare("SELECT * FROM bus");
