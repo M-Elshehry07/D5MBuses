@@ -9,6 +9,10 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+    integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
@@ -54,6 +58,10 @@
     a {
       text-decoration: none;
       color: black;
+    }
+
+    table tbody tr:hover {
+      background-color: #f5f5f5;
     }
 
     .logo {
@@ -229,10 +237,31 @@
       align-items: center;
       padding: 0 30px 0 20px;
       gap: 20px;
+      margin-top: -20px;
       transition: all 0.1s ease-in-out;
     }
 
     .nav-option:hover {
+      border-left: 5px solid #a2a2a2;
+      background-color: #dadada;
+      cursor: pointer;
+    }
+
+    .sub-nav-option {
+      width: 150px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 30px 0 10px;
+      margin-left: 50px;
+      margin-top: -30px;
+      margin-bottom: 15px;
+
+
+      transition: all 0.1s ease-in-out;
+    }
+
+    .sub-nav-option:hover {
       border-left: 5px solid #a2a2a2;
       background-color: #dadada;
       cursor: pointer;
@@ -368,7 +397,6 @@
 
     .report-topic-heading,
     .item1 {
-      width: 1090px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -380,7 +408,6 @@
     }
 
     .items {
-      width: 1000px;
       margin-top: 15px;
     }
 
@@ -645,10 +672,19 @@
               alt="articles">
             <a class="nav-link active" href="#Manageroutes">Admin</a>
           </div>
-          <div class="nav-option option3">
+          <div class="nav-option option3 btn disabled">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png" class="nav-img"
               alt="report">
-            <a class="nav-link" href="#buses">Buses</a>
+            <a class="nav-link">Buses</a>
+          </div>
+          <div class="sub-nav-option">
+            <a class="nav-link" href="bus.php">Bus</a>
+          </div>
+          <div class="sub-nav-option">
+            <a class="nav-link" href="driver.php">Driver</a>
+          </div>
+          <div class="sub-nav-option">
+            <a class="nav-link" href="type.php">Type</a>
           </div>
           <div class="nav-option option4">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/6.png" class="nav-img"
@@ -669,137 +705,149 @@
       </nav>
     </div>
     <div class="main">
-      <!-- List Directory -->
-      <div id="openRolesSection" class="container content-space-1">
-        <!-- Heading -->
-        <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
-          <h2>Current opportunities</h2>
-          <p>We’re a truly global team with 17 offices around the world.</p>
-        </div>
-        <!-- End Heading -->
 
-        <!-- Form -->
-        <form>
-          <div class="row gx-2 gx-md-3 mb-7">
-            <div class="col-md-4 mb-2 mb-md-0">
-              <label class="form-label visually-hidden" for="searchJobCareers">Search job</label>
-
-              <!-- Form -->
-              <div class="input-group input-group-merge">
-                <span class="input-group-prepend input-group-text">
-                  <i class="bi-search"></i>
-                </span>
-                <input type="text" class="form-control form-control-lg" id="searchJobCareers" placeholder="Search job"
-                  aria-label="Search job">
-              </div>
-              <!-- End Form -->
-            </div>
-            <!-- End Col -->
-
-            <div class="col-sm-6 col-md-4 mb-2 mb-sm-0">
-              <label class="form-label visually-hidden" for="locationsJobCareers">Select location</label>
-
-              <!-- Select -->
-              <select class="form-select form-select-lg" id="locationsJobCareers" aria-label="Select location">
-                <option selected>All locations</option>
-                <option value="1">London</option>
-                <option value="2">San Francisco</option>
-                <option value="3">Others</option>
-              </select>
-              <!-- End Select -->
-            </div>
-            <!-- End Col -->
-
-            <div class="col-sm-6 col-md-4">
-              <label class="form-label visually-hidden" for="departmentsJobCareers">Select department</label>
-
-              <!-- Select -->
-              <select class="form-select form-select-lg" id="departmentsJobCareers" aria-label="Select department">
-                <option selected>All departments</option>
-                <option value="1">Software Development</option>
-                <option value="2">Sales</option>
-                <option value="3">Business strategy</option>
-                <option value="4">Design</option>
-              </select>
-              <!-- End Select -->
-            </div>
-            <!-- End Col -->
-          </div>
-          <!-- End Row -->
-        </form>
-        <!-- End Form -->
-
-        <button type="button" class="btn btn-ghost-secondary">
-          <i class="bi-bell me-1"></i> Create alert
-        </button>
-      </div>
-      <!-- End List Directory -->
       <div class="report-container " id="Manageroutes">
         <div class="report-header">
-          <h1 class="recent-Articles">Manage Points</h1>
-          <a href="add-point.php"><button class="view">Add New Point </button></a>
+          <h1 class="recent-Articles">Search Buses</h1>
+          <a href="add-bus.php"><button class="view">Search</button></a>
         </div>
         <div class="report-body">
-          <div class="report-topic-heading">
-            <h3 class="t-op">Point ID</h3>
-            <h3 class="t-op">Point Name</h3>
-            <h3 class="t-op">Location</h3>
-          </div>
-          <div class="items">
-            <?php
-            require_once('connection.php');
-            $query = "SELECT * FROM points";
-            $result = mysqli_query($conn, $query);
-            while ($row = mysqli_fetch_assoc($result)) {
-              $point_id = $row['point_id'];
-              $point_name = $row['point_name'];
-              $location = $row['location'];
-              ?>
-              <div class="item1">
-                <h3 class="t-op-nextlvl"><?php echo $point_id; ?></h3>
-                <h3 class="t-op-nextlvl"><?php echo $point_name; ?></h3>
-                <h3 class="t-op-nextlvl"><?php echo $location; ?></h3>
+          <div iopenRolesSection" class="container content-space-1">
+            <form>
+              <div class="row gx-2 gx-md-3 mb-4">
+                <div class="col-md-4 mb-2 mb-md-0">
+                  <div class="input-group input-group-merge">
+                    <input type="text" class="form-control form-control-lg" id="searchJobCareers"
+                      placeholder="Search Bus Name" aria-label="Search job">
+                  </div>
+                </div>
+
+                <div class="col-md-4 mb-2 mb-md-0">
+                  <div class="input-group input-group-merge">
+                    <input type="text" class="form-control form-control-lg" id="searchJobCareers"
+                      placeholder="Enter Capacity" aria-label="Search job">
+                  </div>
+                </div>
+
+                <div class="col-md-4 mb-2 mb-md-0">
+                  <div class="input-group input-group-merge">
+                    <input type="text" class="form-control form-control-lg" id="searchJobCareers"
+                      placeholder="Enter Plates" aria-label="Search job">
+                  </div>
+                </div>
               </div>
-              <?php
-            }
-            ?>
+              <div class="row gx-2 gx-md-3">
+                <div class="col-sm-6 col-md-4">
+                  <label class="form-label visually-hidden" for="departmentsJobCareers">Select department</label>
+                  <select class="form-select form-select-lg" id="departmentsJobCareers" aria-label="Select department">
+                    <option selected>Select Driver</option>
+                    <option value="1">Software Development</option>
+                    <option value="2">Sales</option>
+                    <option value="3">Business strategy</option>
+                    <option value="4">Design</option>
+                  </select>
+                </div>
+
+                <div class="col-sm-6 col-md-4">
+                  <label class="form-label visually-hidden" for="departmentsJobCareers">Select department</label>
+                  <select class="form-select form-select-lg" id="departmentsJobCareers" aria-label="Select department">
+                    <option selected>All departments</option>
+                    <option value="1">Software Development</option>
+                    <option value="2">Sales</option>
+                    <option value="3">Business strategy</option>
+                    <option value="4">Design</option>
+                  </select>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
+
+
       <div class="report-container" id="buses">
+
         <div class="report-header">
           <h1 class="recent-Articles">Manage Buses</h1>
           <a href="add-bus.php"><button class="view">Add New Bus </button></a>
         </div>
-        <div class="report-body">
+        <table class="table">
+          <thead>
+            <tr>
+
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Capacity</th>
+              <th scope="col">Plates</th>
+              <th scope="col">Driver</th>
+              <th scope="col">Type</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            require_once('connection.php');
+            if (isset($_POST['delete'])) {
+              $delete_id = $_POST['id'];
+              $delete_comment = $conn->prepare("DELETE FROM `bus` WHERE ID = ?");
+              $delete_comment->bind_param("i", $delete_id);
+              $delete_comment->execute();
+              $message = 'Bus deleted successfully!';
+            }
+
+            // Fetch data from the database
+            $query = "SELECT * FROM buses";
+            $result = mysqli_query($conn, $query);
+
+            $stmt = $conn->prepare("SELECT * FROM bus");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            // Initialize the row counter
+            $rowNumber = 1;
+            while ($row = $result->fetch_assoc()) {
+              ?>
+              <tr>
+                <form action="" method="post" class="flex-btn">
+                  <input type="hidden" name="id" value="<?= $row['ID']; ?>">
+                  <td><?= $rowNumber++; ?></td>
+                  <td><?= $row['bus_name']; ?></td>
+                  <td><?= $row['capacity']; ?></td>
+                  <td><?= $row['plates']; ?></td>
+                  <td><?= $row['driver_id']; ?></td>
+                  <td><?= $row['type_id']; ?></td>
+                  <td>
+                    <button type='button' class='btn-sm btn-primary me-1'>Edit</button>
+                    <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger'
+                      onclick="return confirm('Delete <?= $row['bus_name']; ?>');">Delete</button>
+                  </td>
+                </form>
+              </tr>
+              <?php
+            }
+
+            // Close the database connection
+            mysqli_close($conn);
+            ?>
+          </tbody>
+        </table>
+        <!--  <div class="report-body">
           <div class="report-topic-heading">
-            <h3 class="t-op">Bus ID</h3>
-            <h3 class="t-op">capacity</h3>
-            <h3 class="t-op" style="margin-right: 20px;">type</h3>
+            <h3 class="t-op">#</h3>
+            <h3 class="t-op">Name</h3>
+            <h3 class="t-op">Capacity</h3>
+            <h3 class="t-op">Plates</h3>
+            <h3 class="t-op">Driver</h3>
+            <h3 class="t-op">Type</h3>
             <h3 class="t-op">Actions</h3>
           </div>
           <div class="items">
             <div class="item1">
-              <h3 class="t-op-nextlvl">Article 73</h3>
-              <h3 class="t-op-nextlvl">2.9k</h3>
-              <h3 class="t-op-nextlvl">210</h3>
-              <div class="card" style="
-                            left: 8px;
-                            height: 52px;
-                            width: 82px;
-                            bottom: 20px;
-                            border-color: white;
-                        ">
-                <button class="editView" style="
-                            margin-bottom: 3px;
-                        "> Edit</button>
-                <button class="editView">Delete</button>
-              </div>
-            </div>
-            <div class="item1">
-              <h3 class="t-op-nextlvl">Article 65</h3>
-              <h3 class="t-op-nextlvl">1.3k</h3>
-              <h3 class="t-op-nextlvl">220</h3>
+              <h3 class="t-op-nextlvl">1</h3>
+              <h3 class="t-op-nextlvl">Haram</h3>
+              <h3 class="t-op-nextlvl">26</h3>
+              <h3 class="t-op-nextlvl">فنج 327</h3>
+              <h3 class="t-op-nextlvl">Essam Mohamed</h3>
+              <h3 class="t-op-nextlvl">Coaster</h3>
               <div class="card" style="
                             left: 8px;
                             height: 52px;
@@ -814,13 +862,14 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
+
 </body>
 
 </html>
