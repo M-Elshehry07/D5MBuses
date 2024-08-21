@@ -78,7 +78,7 @@ require_once('connection.php');
                         <div class="text-center">
                             <img src="images/marakez-logo.png" alt="marakez-logo">
                             <h2 class="text-center">Add Driver</h2>
-                            <form id="busForm" action="phpBus.php" class="form" method="get">
+                            <form id="busForm" action="phpDriver.php" class="form" method="get">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
