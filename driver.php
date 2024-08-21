@@ -709,7 +709,7 @@
       <div class="report-container " id="Manageroutes">
         <div class="report-header">
           <h1 class="recent-Articles">Search Drivers</h1>
-          <a href="add-bus.php"><button class="view">Search</button></a>
+          <a href="add-driver.php"><button class="view">Search</button></a>
         </div>
         <div class="report-body">
           <div iopenRolesSection class="container content-space-1">
@@ -731,11 +731,11 @@
       </div>
 
 
-      <div class="report-container" id="buses">
+      <div class="report-container" id="drivers">
 
         <div class="report-header">
           <h1 class="recent-Articles">Manage Drivers</h1>
-          <a href="add-bus.php"><button class="view">Add New Driver </button></a>
+          <a href="add-driver.php"><button class="view">Add New Driver </button></a>
         </div>
         <table class="table">
           <thead>
@@ -744,8 +744,7 @@
               <th scope="col">#</th>
               <th scope="col">Driver Name</th>
               <th scope="col">Phone number</th>
-              <th scope="col">Bus Plates</th>
-              <th scope="col">Bus</th>
+              
               
               <th scope="col">Action</th>
             </tr>
@@ -755,10 +754,10 @@
             require_once('connection.php');
             if (isset($_POST['delete'])) {
               $delete_id = $_POST['id'];
-              $delete_comment = $conn->prepare("DELETE FROM `bus` WHERE ID = ?");
+              $delete_comment = $conn->prepare("DELETE FROM `driver` WHERE ID = ?");
               $delete_comment->bind_param("i", $delete_id);
               $delete_comment->execute();
-              $message = 'Bus deleted successfully!';
+              $message = 'Driver deleted successfully!';
             }
 
             // Fetch data from the database
@@ -778,8 +777,7 @@
                   <td><?= $rowNumber++; ?></td>
                   <td><?= $row['bus_name']; ?></td>
                   <td><?= $row['capacity']; ?></td>
-                  <td><?= $row['plates']; ?></td>
-                  <td><?= $row['driver_id']; ?></td>
+                  
                   
                   <td>
                     <button type='button' class='btn-sm btn-primary me-1'>Edit</button>
