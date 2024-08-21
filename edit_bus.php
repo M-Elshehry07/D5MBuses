@@ -77,7 +77,7 @@ require_once('connection.php');
                     <div class="panel-body">
                         <div class="text-center">
                             <img src="images/marakez-logo.png" alt="marakez-logo">
-                            <h2 class="text-center">Add Bus</h2>
+                            <h2 class="text-center">Edit Bus</h2>
                             <form id="busForm" action="phpedit_bus.php" class="form" method="get">
                                 <?php
                                 require_once('connection.php');
@@ -95,24 +95,24 @@ require_once('connection.php');
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>
                                         <input id="busID" name="Name" value="<?= $row['bus_name'] ?>"
-                                            placeholder="Enter Bus Name" class="form-control" type="text" required>
+                                            placeholder="Edit Bus Name" class="form-control" type="text" required>
                                     </div>
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>
                                         <input id="forgetAnswer" value="<?= $row['plates'] ?>" name="plates"
-                                            placeholder="Enter Plates" class="form-control" type="text" required>
+                                            placeholder="Edit Plates" class="form-control" type="text" required>
                                     </div>
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>
                                         <input id="forgetAnswer" value="<?= $row['capacity'] ?>" name="numSeats"
-                                            placeholder="Enter number of seats" class="form-control" type="text"
+                                            placeholder="Edit number of seats" class="form-control" type="text"
                                             required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input class="btn btn-lg btn-block btnForget" value="Submit" type="submit">
+                                    <input class="btn btn-lg btn-block btnForget" value="Edit" type="submit">
                                 </div>
 
                             </form>

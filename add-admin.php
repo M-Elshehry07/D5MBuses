@@ -9,7 +9,11 @@ require_once('connection.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
+<<<<<<< HEAD
     <title>Add Driver</title>
+=======
+    <title>Add Admin</title>
+>>>>>>> eeb45403ea09689691fa630c0a1351bffa2f57c7
     <style>
         body {
             background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
@@ -78,20 +82,33 @@ require_once('connection.php');
                         <div class="text-center">
                             <img src="images/marakez-logo.png" alt="marakez-logo">
                             <h2 class="text-center">Add Admin</h2>
+<<<<<<< HEAD
                             <form id="busForm" action="phpAdmin.php" class="form" method="get">
+=======
+                            <form id="adminForm" action="phpAdmin.php" class="form" method="get">
+>>>>>>> eeb45403ea09689691fa630c0a1351bffa2f57c7
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>
+<<<<<<< HEAD
                                         <input id="adminID" name="Name" placeholder="Enter Admin Name" class="form-control"
+=======
+                                        <input id="adminID" name="Name" placeholder="Enter Admin Username" class="form-control"
+>>>>>>> eeb45403ea09689691fa630c0a1351bffa2f57c7
                                             type="text" required>
                                     </div>
                                     
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>
+<<<<<<< HEAD
                                         <input id="forgetAnswer" name="numSeats" placeholder="Enter Admin password"
                                             class="form-control" type="text" required>
+=======
+                                        <input id="forgetAnswer" name="adminPassword" placeholder="Enter Admin Password"
+                                            class="form-control" type="password" required>
+>>>>>>> eeb45403ea09689691fa630c0a1351bffa2f57c7
                                     </div>
                                 </div>
                                 <div class="form-group">
