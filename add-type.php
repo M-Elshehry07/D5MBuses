@@ -9,7 +9,7 @@ require_once('connection.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-    <title>Add Driver</title>
+    <title>Add Type</title>
     <style>
         body {
             background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
@@ -77,22 +77,27 @@ require_once('connection.php');
                     <div class="panel-body">
                         <div class="text-center">
                             <img src="images/marakez-logo.png" alt="marakez-logo">
-                            <h2 class="text-center">Add Driver</h2>
-                            <form id="busForm" action="phpDriver.php" class="form" method="get">
+                            <h2 class="text-center">Add Type</h2>
+                            <form id="busForm" action="phpType.php" class="form" method="get">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                        <input id="busID" name="Name" placeholder="Enter Driver Name" class="form-control"
+                                        <input id="ID" name="Name" placeholder="Enter Bus Type" class="form-control"
                                             type="text" required>
                                     </div>
-                                    
+                                    <!--<div class="input-group mb-3">
+                                        <span class="input-group-addon"><i
+                                                class="glyphicon glyphicon-envelope color-blue"></i></span>
+                                        <input id="forgetAnswer" name="plates" placeholder="Enter Plates"
+                                            class="form-control" type="text" required>
+                                    </div>
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                        <input id="forgetAnswer" name="numSeats" placeholder="Enter phone number"
+                                        <input id="forgetAnswer" name="numSeats" placeholder="Enter number of seats"
                                             class="form-control" type="text" required>
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <div class="form-group">
                                     <input class="btn btn-lg btn-block btnForget" value="Submit" type="submit">
