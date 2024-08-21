@@ -778,7 +778,7 @@
                   
                   
                   <td>
-                    <a type='button' href="phpeditdriver.php?id=<?= $row['ID']; ?>" class='btn-sm btn-primary me-1'>Edit</a>
+                    <a type='button' href="edit_admin.php?id=<?= $row['ID']; ?>" class='btn-sm btn-primary me-1'>Edit</a>
                     <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger' onclick="return confirm('Delete <?= $row['username']; ?>');">Delete</button>
                   </td>
                 </form>
