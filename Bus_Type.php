@@ -785,8 +785,8 @@
                   
                   <td>
                 
-                    <button type='button' class='btn-sm btn-primary me-1'>Edit</button>
-                    <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger'
+                  <a type='button' href="edit_type.php?name=<?= $row['name']; ?>" class='btn-sm btn-primary me-1'>Edit</a>
+                  <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger'
                      onclick="return confirm('Delete <?= $row['name']; ?>');">Delete</button>
             
                   </td>
