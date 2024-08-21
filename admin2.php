@@ -230,10 +230,31 @@
       align-items: center;
       padding: 0 30px 0 20px;
       gap: 20px;
+      margin-top: -20px;
       transition: all 0.1s ease-in-out;
     }
 
     .nav-option:hover {
+      border-left: 5px solid #a2a2a2;
+      background-color: #dadada;
+      cursor: pointer;
+    }
+
+    .sub-nav-option {
+      width: 150px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 30px 0 10px;
+      margin-left: 50px;
+      margin-top: -30px;
+      margin-bottom: 15px;
+
+
+      transition: all 0.1s ease-in-out;
+    }
+
+    .sub-nav-option:hover {
       border-left: 5px solid #a2a2a2;
       background-color: #dadada;
       cursor: pointer;
@@ -630,45 +651,7 @@
     <img src="images/Marakez.PNG" alt="LOGO" style="height: 50px;" />
   </header>
   <div class="main-container">
-    <div class="navcontainer" style="
-        margin-right: 50px;
-        padding-right: 0px;
-        width: 300px;">
-      <nav class="nav">
-        <div class="nav-upper-options">
-          <div class="nav-option option1">
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210182148/Untitled-design-(29).png"
-              class="nav-img" alt="dashboard">
-            <a class="nav-link active" href="#dashboard" style="color: white;">Dashboard</a>
-          </div>
-          <div class="option2 nav-option">
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183322/9.png" class="nav-img"
-              alt="articles">
-            <a class="nav-link active" href="#Manageroutes">Admin</a>
-          </div>
-          <div class="nav-option option3">
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183320/5.png" class="nav-img"
-              alt="report">
-            <a class="nav-link" href="bus.php">Buses</a>
-          </div>
-          <div class="nav-option option4">
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/6.png" class="nav-img"
-              alt="institution">
-            <a class="nav-link" href="#schedules">Manage reservarions</a>
-          </div>
-          <div class="nav-option option5">
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183323/10.png" class="nav-img"
-              alt="blog">
-            <a class="nav-link" href="#bookings">Manage Tickets</a>
-          </div>
-          <div class="nav-option logout">
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/7.png" class="nav-img"
-              alt="logout">
-            <h3>Logout</h3>
-          </div>
-        </div>
-      </nav>
-    </div>
+  <?php include_once('nav.php') ?>
     <div class="main">
       <div class="searchbar2">
         <input type="text" name="" id="" placeholder="Search">
