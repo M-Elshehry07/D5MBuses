@@ -761,10 +761,10 @@
             }
 
             // Fetch data from the database
-            $query = "SELECT * FROM bus";
+            $query = "SELECT * FROM driver";
             $result = mysqli_query($conn, $query);
 
-            $stmt = $conn->prepare("SELECT * FROM bus");
+            $stmt = $conn->prepare("SELECT * FROM driver");
             $stmt->execute();
             $result = $stmt->get_result();
             // Initialize the row counter
@@ -775,14 +775,13 @@
                 <form action="" method="post" class="flex-btn">
                   <input type="hidden" name="id" value="<?= $row['ID']; ?>">
                   <td><?= $rowNumber++; ?></td>
-                  <td><?= $row['bus_name']; ?></td>
-                  <td><?= $row['capacity']; ?></td>
+                  <td><?= $row['name']; ?></td>
+                  <td><?= $row['phone number']; ?></td>
                   
                   
                   <td>
                     <button type='button' class='btn-sm btn-primary me-1'>Edit</button>
-                    <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger'
-                      onclick="return confirm('Delete <?= $row['bus_name']; ?>');">Delete</button>
+                    <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger' onclick="return confirm('Delete <?= $row['name']; ?>');">Delete</button>
                   </td>
                 </form>
               </tr>
