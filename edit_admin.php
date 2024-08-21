@@ -9,7 +9,7 @@ require_once('connection.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-    <title>Add Admin</title>
+    <title>Add Bus</title>
     <style>
         body {
             background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
@@ -77,24 +77,35 @@ require_once('connection.php');
                     <div class="panel-body">
                         <div class="text-center">
                             <img src="images/marakez-logo.png" alt="marakez-logo">
-                            <h2 class="text-center">Add Admin</h2>
-                            <form id="adminForm" action="phpAdmin.php" class="form" method="get">                                <div class="form-group">
+                            <h2 class="text-center">Edit Admin</h2>
+                            <form id="busForm" action="phpedit_admin.php" class="form" method="get">
+                                <?php
+                                require_once('connection.php');
+                                $id = $_GET['id'];
+                                $stmt = $conn->prepare("SELECT * FROM admin WHERE ID = ?");
+                                $stmt->bind_param("i", $id);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                $row = $result->fetch_assoc();
+                                ?>
+                                <input type="hidden" name="id" value="<?= $id; ?>">
+
+                                <div class="form-group">
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                        <input id="adminID" name="Name" placeholder="Enter Admin Username" class="form-control"
-                                            type="text" required>
+                                        <input id="busID" name="username" value="<?= $row['username'] ?>"
+                                            placeholder="Edit Bus Name" class="form-control" type="text" required>
                                     </div>
-                                    
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                        <input id="forgetAnswer" name="adminPassword" placeholder="Enter Admin Password"
-                                            class="form-control" type="password" required>
+                                        <input id="forgetAnswer" value="<?= $row['Password'] ?>" name="password"
+                                            placeholder="Edit Plates" class="form-control" type="text" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input class="btn btn-lg btn-block btnForget" value="Submit" type="submit">
+                                    <input class="btn btn-lg btn-block btnForget" value="Edit" type="submit">
                                 </div>
 
                             </form>

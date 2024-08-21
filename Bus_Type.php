@@ -710,6 +710,7 @@
         <form action="" method="POST">
           <div class="report-header">
             <h1 class="recent-Articles">Search Bus Type</h1>
+            <button style="margin-left: 63%;" class="view" name="search_type" type='submit'>Reset</button>
             <button class="view" name="search_type" type='submit'>Search</button>
           </div>
           <div class="report-body">
