@@ -21,7 +21,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: "Poppins", sans-serif;
-      scroll-behavior: smooth;
+     scroll-behavior: smooth;   
     }
 
     :root {
@@ -343,13 +343,13 @@
     }
 
     .report-container {
-      min-height: 300px;
+      min-height: 100px;
       max-width: 1200px;
       margin: 70px auto 0px auto;
       background-color: #ffffff;
       border-radius: 30px;
       box-shadow: 3px 3px 10px rgb(188, 188, 188);
-      padding: 0px 20px 20px 20px;
+      padding: 0px 20px 0px 20px;
     }
 
     .report-header {
@@ -708,56 +708,22 @@
 
       <div class="report-container " id="Manageroutes">
         <div class="report-header">
-          <h1 class="recent-Articles">Search Buses</h1>
-          <a href="add-bus.php"><button class="view">Search</button></a>
+          <h1 class="recent-Articles">Search Drivers</h1>
+          <a href="add-driver.php"><button class="view">Search</button></a>
         </div>
         <div class="report-body">
-          <div iopenRolesSection" class="container content-space-1">
+          <div iopenRolesSection class="container content-space-1">
             <form>
               <div class="row gx-2 gx-md-3 mb-4">
-                <div class="col-md-4 mb-2 mb-md-0">
+                <div class="col-12 mb-md-0">
                   <div class="input-group input-group-merge">
                     <input type="text" class="form-control form-control-lg" id="searchJobCareers"
-                      placeholder="Search Bus Name" aria-label="Search job">
+                      placeholder="Search Driver Name" aria-label="Search job">
                   </div>
                 </div>
 
-                <div class="col-md-4 mb-2 mb-md-0">
-                  <div class="input-group input-group-merge">
-                    <input type="text" class="form-control form-control-lg" id="searchJobCareers"
-                      placeholder="Enter Capacity" aria-label="Search job">
-                  </div>
-                </div>
+            
 
-                <div class="col-md-4 mb-2 mb-md-0">
-                  <div class="input-group input-group-merge">
-                    <input type="text" class="form-control form-control-lg" id="searchJobCareers"
-                      placeholder="Enter Plates" aria-label="Search job">
-                  </div>
-                </div>
-              </div>
-              <div class="row gx-2 gx-md-3">
-                <div class="col-sm-6 col-md-4">
-                  <label class="form-label visually-hidden" for="departmentsJobCareers">Select department</label>
-                  <select class="form-select form-select-lg" id="departmentsJobCareers" aria-label="Select department">
-                    <option selected>Select Driver</option>
-                    <option value="1">Software Development</option>
-                    <option value="2">Sales</option>
-                    <option value="3">Business strategy</option>
-                    <option value="4">Design</option>
-                  </select>
-                </div>
-
-                <div class="col-sm-6 col-md-4">
-                  <label class="form-label visually-hidden" for="departmentsJobCareers">Select department</label>
-                  <select class="form-select form-select-lg" id="departmentsJobCareers" aria-label="Select department">
-                    <option selected>All departments</option>
-                    <option value="1">Software Development</option>
-                    <option value="2">Sales</option>
-                    <option value="3">Business strategy</option>
-                    <option value="4">Design</option>
-                  </select>
-                </div>
               </div>
             </form>
           </div>
@@ -765,22 +731,21 @@
       </div>
 
 
-      <div class="report-container" id="buses">
+      <div class="report-container" id="drivers">
 
         <div class="report-header">
-          <h1 class="recent-Articles">Manage Buses</h1>
-          <a href="add-bus.php"><button class="view">Add New Bus </button></a>
+          <h1 class="recent-Articles">Manage Drivers</h1>
+          <a href="add-driver.php"><button class="view">Add New Driver </button></a>
         </div>
         <table class="table">
           <thead>
             <tr>
 
               <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Capacity</th>
-              <th scope="col">Plates</th>
-              <th scope="col">Driver</th>
-              <th scope="col">Type</th>
+              <th scope="col">Driver Name</th>
+              <th scope="col">Phone number</th>
+              
+              
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -789,10 +754,10 @@
             require_once('connection.php');
             if (isset($_POST['delete'])) {
               $delete_id = $_POST['id'];
-              $delete_comment = $conn->prepare("DELETE FROM `bus` WHERE ID = ?");
+              $delete_comment = $conn->prepare("DELETE FROM `driver` WHERE ID = ?");
               $delete_comment->bind_param("i", $delete_id);
               $delete_comment->execute();
-              $message = 'Bus deleted successfully!';
+              $message = 'Driver deleted successfully!';
             }
 
             // Fetch data from the database
@@ -812,11 +777,10 @@
                   <td><?= $rowNumber++; ?></td>
                   <td><?= $row['bus_name']; ?></td>
                   <td><?= $row['capacity']; ?></td>
-                  <td><?= $row['plates']; ?></td>
-                  <td><?= $row['driver_id']; ?></td>
-                  <td><?= $row['type_id']; ?></td>
+                  
+                  
                   <td>
-                    <a type='button' href="edit_bus.php?id=<?= $row['ID']; ?>" class='btn-sm btn-primary me-1'>Edit</a>
+                    <button type='button' class='btn-sm btn-primary me-1'>Edit</button>
                     <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger'
                       onclick="return confirm('Delete <?= $row['bus_name']; ?>');">Delete</button>
                   </td>
