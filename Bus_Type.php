@@ -21,7 +21,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: "Poppins", sans-serif;
-     scroll-behavior: smooth;   
+      scroll-behavior: smooth;
     }
 
     :root {
@@ -684,7 +684,7 @@
             <a class="nav-link" href="driver.php">Driver</a>
           </div>
           <div class="sub-nav-option">
-            <a class="nav-link" href="type.php">Type</a>
+            <a class="nav-link" href="Bus_Type.php">Type</a>
           </div>
           <div class="nav-option option4">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/6.png" class="nav-img"
@@ -708,8 +708,8 @@
 
       <div class="report-container " id="Manageroutes">
         <div class="report-header">
-          <h1 class="recent-Articles">Search Drivers</h1>
-          <a href="add-driver.php"><button class="view">Search</button></a>
+          <h1 class="recent-Articles">Search BusType</h1>
+          <a href="add-bus.php"><button class="view">Search</button></a>
         </div>
         <div class="report-body">
           <div iopenRolesSection class="container content-space-1">
@@ -718,7 +718,7 @@
                 <div class="col-12 mb-md-0">
                   <div class="input-group input-group-merge">
                     <input type="text" class="form-control form-control-lg" id="searchJobCareers"
-                      placeholder="Search Driver Name" aria-label="Search job">
+                      placeholder="Search Bus by Type" aria-label="Search job">
                   </div>
                 </div>
 
@@ -731,21 +731,19 @@
       </div>
 
 
-      <div class="report-container" id="drivers">
+      <div class="report-container" id="buses">
 
         <div class="report-header">
-          <h1 class="recent-Articles">Manage Drivers</h1>
-          <a href="add-driver.php"><button class="view">Add New Driver </button></a>
+          <h1 class="recent-Articles">Bus Types</h1>
+          <a href="add-type.php"><button class="view">Add New BusType </button></a>
         </div>
         <table class="table">
           <thead>
             <tr>
 
               <th scope="col">#</th>
-              <th scope="col">Driver Name</th>
-              <th scope="col">Phone number</th>
-              
-              
+              <th scope="col">Bus Type</th>
+              <th scope="col">Buses Number</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -754,17 +752,17 @@
             require_once('connection.php');
             if (isset($_POST['delete'])) {
               $delete_id = $_POST['id'];
-              $delete_comment = $conn->prepare("DELETE FROM `driver` WHERE ID = ?");
+              $delete_comment = $conn->prepare("DELETE FROM `type` WHERE ID = ?");
               $delete_comment->bind_param("i", $delete_id);
               $delete_comment->execute();
-              $message = 'Driver deleted successfully!';
+              $message = 'Type deleted successfully!';
             }
 
             // Fetch data from the database
-            $query = "SELECT * FROM driver";
+            $query = "SELECT * FROM type";
             $result = mysqli_query($conn, $query);
 
-            $stmt = $conn->prepare("SELECT * FROM driver");
+            $stmt = $conn->prepare("SELECT * FROM type");
             $stmt->execute();
             $result = $stmt->get_result();
             // Initialize the row counter
@@ -776,12 +774,21 @@
                   <input type="hidden" name="id" value="<?= $row['ID']; ?>">
                   <td><?= $rowNumber++; ?></td>
                   <td><?= $row['name']; ?></td>
-                  <td><?= $row['phone number']; ?></td>
-                  
+                  <?php 
+                    $count = $conn->prepare("SELECT count(*) AS num FROM bus where type_id = ?");
+                    $count->bind_param("i", $row['ID']);
+                    $count->execute();
+                    $count = $count->get_result();
+                    $row = $count->fetch_assoc();
+                  ?>
+                  <td><?= $row['num']; ?></td>
                   
                   <td>
+                <!--
                     <button type='button' class='btn-sm btn-primary me-1'>Edit</button>
-                    <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger' onclick="return confirm('Delete <?= $row['name']; ?>');">Delete</button>
+                    <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger'
+                       onclick="return confirm('Delete <?= $row['name']; ?>');">Delete</button>
+            -->
                   </td>
                 </form>
               </tr>
