@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2024 at 02:25 PM
+-- Generation Time: Aug 21, 2024 at 01:39 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -64,10 +64,11 @@ CREATE TABLE `bus` (
 --
 
 INSERT INTO `bus` (`ID`, `bus_name`, `capacity`, `plates`, `driver_id`, `type_id`, `info`) VALUES
-(1, 'Haram', 28, 'sdb6252', 0, 0, ''),
-(2, 'Maadi', 15, 'sdb6359', 0, 0, ''),
 (3, 'Zayed', 10, 'sdb6485', 0, 0, ''),
-(4, 'Haram2', 10, 'sdb8232', 0, 0, '');
+(5, 'Mohamed', 1018874908, '', NULL, NULL, NULL),
+(6, 'Mohamed', 1018874908, '', NULL, NULL, NULL),
+(7, 'Mohamed', 1018874908, '', NULL, NULL, NULL),
+(8, 'Mohamed', 1018874908, '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -113,8 +114,18 @@ CREATE TABLE `bus_ride` (
 
 CREATE TABLE `driver` (
   `ID` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
+  `name` varchar(50) NOT NULL,
+  `phone number` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `driver`
+--
+
+INSERT INTO `driver` (`ID`, `name`, `phone number`) VALUES
+(8, 'Mohamed', '0112341'),
+(9, 'Ahmed', '0112341'),
+(10, '7masa', '01018874908');
 
 -- --------------------------------------------------------
 
@@ -238,7 +249,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bus`
 --
 ALTER TABLE `bus`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `bus_points`
@@ -256,7 +267,7 @@ ALTER TABLE `bus_ride`
 -- AUTO_INCREMENT for table `driver`
 --
 ALTER TABLE `driver`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `points`
