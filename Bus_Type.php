@@ -704,30 +704,27 @@
         </div>
       </nav>
     </div>
+    
     <div class="main">
-
       <div class="report-container " id="Manageroutes">
-        <div class="report-header">
-          <h1 class="recent-Articles">Search BusType</h1>
-          <a href="add-bus.php"><button class="view">Search</button></a>
-        </div>
-        <div class="report-body">
-          <div iopenRolesSection class="container content-space-1">
-            <form>
-              <div class="row gx-2 gx-md-3 mb-4">
-                <div class="col-12 mb-md-0">
-                  <div class="input-group input-group-merge">
-                    <input type="text" class="form-control form-control-lg" id="searchJobCareers"
-                      placeholder="Search Bus by Type" aria-label="Search job">
+        <form action="" method="POST">
+          <div class="report-header">
+            <h1 class="recent-Articles">Search Bus Type</h1>
+            <button class="view" name="search_type" type='submit'>Search</button>
+          </div>
+          <div class="report-body">
+            <div iopenRolesSection class="container content-space-1">
+                <div class="row gx-2 gx-md-3 mb-4">
+                  <div class="col-12 mb-md-0">
+                    <div class="input-group input-group-merge">
+                      <input type="text" name="type_name" class="form-control form-control-lg" id="searchJobCareers"
+                        placeholder="Type Name" aria-label="Search job">
+                    </div>
                   </div>
                 </div>
-
-            
-
-              </div>
-            </form>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
 
 
@@ -761,8 +758,16 @@
             // Fetch data from the database
             $query = "SELECT * FROM type";
             $result = mysqli_query($conn, $query);
+            
+            if (isset($_POST['search_type'])) {
 
-            $stmt = $conn->prepare("SELECT * FROM type");
+              $type_name = $_POST['type_name'];
+              $stmt = $conn->prepare("SELECT * FROM type where name like ?");
+              $search_term = '%' . $type_name . '%';
+              $stmt->bind_param("s", $search_term);
+            } else {
+              $stmt = $conn->prepare("SELECT * FROM type");
+            }
             $stmt->execute();
             $result = $stmt->get_result();
             // Initialize the row counter
