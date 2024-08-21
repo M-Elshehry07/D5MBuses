@@ -661,9 +661,10 @@
     <div class="main">
 
       <div class="report-container " id="Manageroutes">
+      <form action="" method="POST">
         <div class="report-header">
           <h1 class="recent-Articles">Search Drivers</h1>
-          <a href="add-driver.php"><button class="view">Search</button></a>
+          <button class="view" name="search_type" type='submit'>Search</button>
         </div>
         <div class="report-body">
           <div iopenRolesSection class="container content-space-1">
@@ -671,7 +672,7 @@
               <div class="row gx-2 gx-md-3 mb-4">
                 <div class="col-12 mb-md-0">
                   <div class="input-group input-group-merge">
-                    <input type="text" class="form-control form-control-lg" id="searchJobCareers"
+                    <input type="text" name="type_name" class="form-control form-control-lg" id="searchJobCareers"
                       placeholder="Search Driver Name" aria-label="Search job">
                   </div>
                 </div>
@@ -682,6 +683,7 @@
             </form>
           </div>
         </div>
+</form>
       </div>
 
 
@@ -706,6 +708,21 @@
           <tbody>
             <?php
             require_once('connection.php');
+
+            $query = "SELECT * FROM driver";
+            $result = mysqli_query($conn, $query);
+            
+            if (isset($_POST['search_type'])) {
+              $driver_name = $_POST['type_name'];
+              $stmt = $conn->prepare("SELECT * FROM driver where name like ?");
+              $search_term = '%' . $driver_name . '%';
+              $stmt->bind_param("s", $search_term);
+            } else {
+              $stmt = $conn->prepare("SELECT * FROM driver");
+            }
+            $stmt->execute();
+            $result = $stmt->get_result();
+
             if (isset($_POST['delete'])) {
               $delete_id = $_POST['id'];
               $delete_comment = $conn->prepare("DELETE FROM `driver` WHERE ID = ?");
@@ -714,13 +731,6 @@
               $message = 'Driver deleted successfully!';
             }
 
-            // Fetch data from the database
-            $query = "SELECT * FROM driver";
-            $result = mysqli_query($conn, $query);
-
-            $stmt = $conn->prepare("SELECT * FROM driver");
-            $stmt->execute();
-            $result = $stmt->get_result();
             // Initialize the row counter
             $rowNumber = 1;
             while ($row = $result->fetch_assoc()) {
