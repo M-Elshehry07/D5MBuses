@@ -779,16 +779,16 @@
                     $count->bind_param("i", $row['ID']);
                     $count->execute();
                     $count = $count->get_result();
-                    $row = $count->fetch_assoc();
+                    $row2 = $count->fetch_assoc();
                   ?>
-                  <td><?= $row['num']; ?></td>
+                  <td><?= $row2['num']; ?></td>
                   
                   <td>
-                <!--
+                
                     <button type='button' class='btn-sm btn-primary me-1'>Edit</button>
                     <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger'
-                       onclick="return confirm('Delete <?= $row['name']; ?>');">Delete</button>
-            -->
+                     onclick="return confirm('Delete <?= $row['name']; ?>');">Delete</button>
+            
                   </td>
                 </form>
               </tr>

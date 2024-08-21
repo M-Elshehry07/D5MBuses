@@ -684,7 +684,7 @@
             <a class="nav-link" href="driver.php">Driver</a>
           </div>
           <div class="sub-nav-option">
-            <a class="nav-link" href="type.php">Type</a>
+            <a class="nav-link" href="Bus_Type.php">Type</a>
           </div>
           <div class="nav-option option4">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183321/6.png" class="nav-img"
