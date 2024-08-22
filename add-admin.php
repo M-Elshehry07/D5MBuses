@@ -78,14 +78,15 @@ require_once('connection.php');
                         <div class="text-center">
                             <img src="images/marakez-logo.png" alt="marakez-logo">
                             <h2 class="text-center">Add Admin</h2>
-                            <form id="adminForm" action="phpAdmin.php" class="form" method="get">                                <div class="form-group">
+                            <form id="adminForm" action="phpAdmin.php" class="form" method="post">
+                                <div class="form-group">
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                        <input id="adminID" name="Name" placeholder="Enter Admin Username" class="form-control"
-                                            type="text" required>
+                                        <input id="adminID" name="Name" placeholder="Enter Admin Username"
+                                            class="form-control" type="text" required>
                                     </div>
-                                    
+
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
                                                 class="glyphicon glyphicon-envelope color-blue"></i></span>

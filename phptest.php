@@ -5,8 +5,8 @@ $username = "root";
 $password = "";
 $dbname = "test";
 $conn = mysqli_connect($servername, $username, $password, $dbname, 3306);
-$Name = $_GET['name'];
-$Password = sha1($_GET['password']);
+$Name = $_POST['name'];
+$Password = sha1($_POST['password']);
 
 
 if (!$conn) {
@@ -19,8 +19,8 @@ $result = mysqli_query($conn, $sql);
 
 if ($result && mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_assoc($result);
-    
-    $_SESSION['Name'] = $row['Name'];  
+
+    $_SESSION['Name'] = $row['Name'];
     echo "Login successful";
     header("Location:admin2.php");
 } else {

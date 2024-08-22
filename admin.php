@@ -105,7 +105,7 @@
 
     <div class="login-container">
         <h2>Login</h2>
-        <form action="phptest.php">
+        <form action="phptest.php" method="post">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
