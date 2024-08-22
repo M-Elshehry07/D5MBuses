@@ -25,24 +25,29 @@
     <div class="main">
 
       <div class="report-container " id="Manageroutes">
-        <div class="report-header">
-          <h1 class="recent-Articles">Search Admins</h1>
-          <a href="add-admin.php"><button class="view">Search</button></a>
-        </div>
-        <div class="report-body">
-          <div iopenRolesSection class="container content-space-1">
-            <form>
-              <div class="row gx-2 gx-md-3 mb-4">
-                <div class="col-12 mb-md-0">
-                  <div class="input-group input-group-merge">
-                    <input type="text" class="form-control form-control-lg" id="searchJobCareers"
-                      placeholder="Search Admin Name" aria-label="Search job">
-                  </div>
-                </div>
-              </div>
-            </form>
+        <form action="" method="POST">
+          <div class="report-header">
+            <h1 class="recent-Articles">Search Drivers</h1>
+            <button class="view" name="search_type" type='submit'>Search</button>
           </div>
-        </div>
+          <div class="report-body">
+            <div iopenRolesSection class="container content-space-1">
+              <form>
+                <div class="row gx-2 gx-md-3 mb-4">
+                  <div class="col-12 mb-md-0">
+                    <div class="input-group input-group-merge">
+                      <input type="text" name="type_name" class="form-control form-control-lg" id="searchJobCareers"
+                        placeholder="Search Name" aria-label="Search job">
+                    </div>
+                  </div>
+
+
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </form>
       </div>
 
 
@@ -66,6 +71,20 @@
           <tbody>
             <?php
             require_once('connection.php');
+            $query = "SELECT * FROM admin";
+            $result = mysqli_query($conn, $query);
+
+            if (isset($_POST['search_type'])) {
+              $admin_name = $_POST['type_name'];
+              $stmt = $conn->prepare("SELECT * FROM admin where username like ?");
+              $search_term = '%' . $admin_name . '%';
+              $stmt->bind_param("s", $search_term);
+            } else {
+              $stmt = $conn->prepare("SELECT * FROM admin");
+            }
+            $stmt->execute();
+            $result = $stmt->get_result();
+
             if (isset($_POST['delete'])) {
               $delete_id = $_POST['id'];
               $delete_comment = $conn->prepare("DELETE FROM `admin` WHERE ID = ?");
@@ -74,14 +93,14 @@
               $message = 'Admin deleted successfully!';
             }
 
-            // Fetch data from the database
-            $query = "SELECT * FROM admin";
-            $result = mysqli_query($conn, $query);
-
-            $stmt = $conn->prepare("SELECT * FROM admin");
-            $stmt->execute();
-            $result = $stmt->get_result();
-            // Initialize the row counter
+            // // Fetch data from the database
+            // $query = "SELECT * FROM admin";
+            // $result = mysqli_query($conn, $query);
+            
+            // $stmt = $conn->prepare("SELECT * FROM admin");
+            // $stmt->execute();
+            // $result = $stmt->get_result();
+            // // Initialize the row counter
             $rowNumber = 1;
             while ($row = $result->fetch_assoc()) {
               ?>

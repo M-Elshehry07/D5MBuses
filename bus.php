@@ -26,14 +26,13 @@
     <div class="main">
 
       <div class="report-container " id="Manageroutes">
-        <div class="report-body">
-          <div iopenRolesSection class="container content-space-1">
-            <form method="post">
-              <div class="report-header">
-                <h1 class="recent-Articles">Search Buses</h1>
-                <button class="view" name="search_type" type='submit'>Search</button>
-
-              </div>
+        <form method="post">
+          <div class="report-header">
+            <h1 class="recent-Articles">Search Buses</h1>
+            <button class="view" name="search_type" type='submit'>Search</button>
+          </div>
+          <div class="report-body">
+            <div iopenRolesSection class="container content-space-1">
               <div class="row gx-2 gx-md-3 mb-4">
                 <div class="col-md-4 mb-2 mb-md-0">
                   <div class="input-group input-group-merge">
@@ -59,113 +58,178 @@
               <div class="row gx-2 gx-md-3">
                 <div class="col-sm-6 col-md-4">
                   <label class="form-label visually-hidden" for="departmentsJobCareers">Select department</label>
-                  <select class="form-select form-select-lg" id="departmentsJobCareers" aria-label="Select department">
-                    <option selected>Select Driver</option>
-                    <option value="1">Software Development</option>
-                    <option value="2">Sales</option>
-                    <option value="3">Business strategy</option>
-                    <option value="4">Design</option>
+                  <select class="form-select form-select-lg" name="driver" id="departmentsJobCareers"
+                    aria-label="Select department">
+                    <option value="">Select Driver</option>
+                    <?php
+                    require_once('connection.php');
+                    $sql = "SELECT * FROM driver";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      ?>
+                      <option name="driver"><?= $row['name'] ?></option>
+                      <?php
+                    } ?>
                   </select>
+
                 </div>
 
                 <div class="col-sm-6 col-md-4">
                   <label class="form-label visually-hidden" for="departmentsJobCareers">Select department</label>
-                  <select class="form-select form-select-lg" id="departmentsJobCareers" aria-label="Select department">
-                    <option selected>All departments</option>
-                    <option value="1">Software Development</option>
+                  <select class="form-select form-select-lg" name="type" id="departmentsJobCareers"
+                    aria-label="Select department">
+                    <option value="">Select Type</option>
+                    <?php
+                    $sql = "SELECT * FROM type";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      ?>
+                      <option name="type"><?= $row['name'] ?></option>
+                      <?php
+                    } ?>
+                    <!-- <option value="1">Software Development</option>
                     <option value="2">Sales</option>
                     <option value="3">Business strategy</option>
-                    <option value="4">Design</option>
+                    <option value="4">Design</option> -->
                   </select>
                 </div>
               </div>
-            </form>
-          </div>
-        </div>
+        </form>
       </div>
+    </div>
+  </div>
 
 
-      <div class="report-container" id="buses">
+  <div class="report-container" id="buses">
 
-        <div class="report-header">
-          <h1 class="recent-Articles">Manage Buses</h1>
-          <a href="add-bus.php"><button class="view">Add New Bus </button></a>
-        </div>
-        <table class="table">
-          <thead>
-            <tr>
+    <div class="report-header">
+      <h1 class="recent-Articles">Manage Buses</h1>
+      <a href="add-bus.php"><button class="view">Add New Bus </button></a>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
 
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Capacity</th>
-              <th scope="col">Plates</th>
-              <th scope="col">Driver</th>
-              <th scope="col">Type</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            require_once('connection.php');
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Capacity</th>
+          <th scope="col">Plates</th>
+          <th scope="col">Driver</th>
+          <th scope="col">Type</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
 
-            $query = "SELECT * FROM bus";
-            $result = mysqli_query($conn, $query);
 
-            if (isset($_POST['search_type'])) {
-              echo 'searching';
-              $bus_name = $_POST['type_name'];
-              $cap = $_POST['cap'];
-              $plateNum = $_POST['plateNum'];
-              $stmt = $conn->prepare("SELECT * FROM bus where bus_name like ? or capacity = ? or plates like ?");
-              $search_term = '%' . $bus_name . '%';
-              $plates_term = '%' . $plateNum . '%';
-              echo $search_term;
-              echo $cap;
-              echo $plates_term;
-              $stmt->bind_param("sis", $search_term, $cap, $plates_term);
-            } else {
-              $stmt = $conn->prepare("SELECT * FROM bus");
-            }
-            $stmt->execute();
-            $result = $stmt->get_result();
+        $query = "SELECT * FROM bus";
+        $result = mysqli_query($conn, $query);
 
-            if (isset($_POST['delete'])) {
-              $delete_id = $_POST['id'];
-              $delete_comment = $conn->prepare("DELETE FROM `bus` WHERE ID = ?");
-              $delete_comment->bind_param("i", $delete_id);
-              $delete_comment->execute();
-              $message = 'Bus deleted successfully!';
-            }
+        if (isset($_POST['search_type'])) {
+          $query = "SELECT b.*, d.name, t.name as 'tname' FROM bus b JOIN driver d ON b.driver_id = d.ID JOIN type t ON b.type_id = t.ID WHERE ";
+          $conditions = [];
+          $params = [];
+          $types = '';
 
-            // Initialize the row counter
-            $rowNumber = 1;
-            while ($row = $result->fetch_assoc()) {
-              ?>
-              <tr>
-                <form action="" method="post" class="flex-btn">
-                  <input type="hidden" name="id" value="<?= $row['ID']; ?>">
-                  <td><?= $rowNumber++; ?></td>
-                  <td><?= $row['bus_name']; ?></td>
-                  <td><?= $row['capacity']; ?></td>
-                  <td><?= $row['plates']; ?></td>
-                  <td><?= $row['driver_id']; ?></td>
-                  <td><?= $row['type_id']; ?></td>
-                  <td>
-                    <a type='button' href="edit_bus.php?id=<?= $row['ID']; ?>" class='btn-sm btn-primary me-1'>Edit</a>
-                    <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger'
-                      onclick="return confirm('Delete <?= $row['bus_name']; ?>');">Delete</button>
-                  </td>
-                </form>
-              </tr>
-              <?php
-            }
+          if (!empty($_POST['type_name'])) {
+            $bus_name = '%' . $_POST['type_name'] . '%';
+            $conditions[] = "bus_name LIKE ?";
+            $params[] = $bus_name;
+            $types .= 's';
+          }
 
-            // Close the database connection
-            mysqli_close($conn);
-            ?>
-          </tbody>
-        </table>
-        <!--  <div class="report-body">
+          if (!empty($_POST['cap'])) {
+            $cap = $_POST['cap'];
+            $conditions[] = "capacity = ?";
+            $params[] = $cap;
+            $types .= 'i';
+          }
+
+          if (!empty($_POST['plateNum'])) {
+            $plateNum = '%' . $_POST['plateNum'] . '%';
+            $conditions[] = "plates LIKE ?";
+            $params[] = $plateNum;
+            $types .= 's';
+          }
+
+          if (!empty($_POST['driver'])) {
+            $driver = '%' . $_POST['driver'] . '%';
+            $conditions[] = 'd.name LIKE ?';
+            $params[] = $driver;
+            $types .= 's';
+          }
+
+          if (!empty($_POST['type'])) {
+            $type = '%' . $_POST['type'] . '%';
+            $conditions[] = 't.name LIKE ?';
+            $params[] = $type;
+            $types .= 's';
+          }
+
+
+
+          // Join the conditions to build the final query
+          if (!empty($conditions)) {
+            $query .= implode(' OR ', $conditions);
+          } else {
+            // No conditions were added, so just select everything
+            $query = "SELECT b.*, d.name, t.name as 'tname' FROM bus b JOIN driver d ON b.driver_id = d.ID JOIN type t ON b.type_id = t.ID ";
+          }
+
+          $stmt = $conn->prepare($query);
+
+          // Bind parameters dynamically
+          if (!empty($params)) {
+            $stmt->bind_param($types, ...$params);
+          }
+        } else {
+          $stmt = $conn->prepare("SELECT b.*, d.name, t.name as 'tname' FROM bus b JOIN driver d ON b.driver_id = d.ID JOIN type t ON b.type_id = t.ID ");
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if (isset($_POST['delete'])) {
+          $delete_id = $_POST['id'];
+          $delete_comment = $conn->prepare("DELETE FROM `bus` WHERE ID = ?");
+          $delete_comment->bind_param("i", $delete_id);
+          $delete_comment->execute();
+          $message = 'Bus deleted successfully!';
+        }
+        // $query2 = $conn->prepare("SELECT b.*, d.name FROM bus b JOIN driver d ON b.driver_id = d.ID");
+        
+
+        // Initialize the row counter
+        $rowNumber = 1;
+        while ($row = $result->fetch_assoc()) {
+          ?>
+          <tr>
+            <form action="" method="post" class="flex-btn">
+              <input type="hidden" name="id" value="<?= $row['ID']; ?>">
+              <td><?= $rowNumber++; ?></td>
+              <td><?= $row['bus_name']; ?></td>
+              <td><?= $row['capacity']; ?></td>
+              <td><?= $row['plates']; ?></td>
+              <td><?= $row['name']; ?></td>
+              <td><?= $row['tname']; ?></td>
+
+              <td>
+                <a type='button' href="edit_bus.php?id=<?= $row['ID']; ?>" class='btn-sm btn-primary me-1'>Edit</a>
+                <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger'
+                  onclick="return confirm('Delete <?= $row['bus_name']; ?>');">Delete</button>
+              </td>
+            </form>
+          </tr>
+          <?php
+        }
+
+        // Close the database connection
+        mysqli_close($conn);
+        ?>
+      </tbody>
+    </table>
+    <!--  <div class="report-body">
           <div class="report-topic-heading">
             <h3 class="t-op">#</h3>
             <h3 class="t-op">Name</h3>
@@ -198,8 +262,8 @@
             </div>
           </div>
         </div> -->
-      </div>
-    </div>
+  </div>
+  </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
