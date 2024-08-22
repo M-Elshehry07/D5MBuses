@@ -26,31 +26,32 @@
     <div class="main">
 
       <div class="report-container " id="Manageroutes">
-        <div class="report-header">
-          <h1 class="recent-Articles">Search Buses</h1>
-          <a href="add-bus.php"><button class="view">Search</button></a>
-        </div>
         <div class="report-body">
-          <div iopenRolesSection" class="container content-space-1">
-            <form>
+          <div iopenRolesSection class="container content-space-1">
+            <form method="post">
+              <div class="report-header">
+                <h1 class="recent-Articles">Search Buses</h1>
+                <button class="view" name="search_type" type='submit'>Search</button>
+
+              </div>
               <div class="row gx-2 gx-md-3 mb-4">
                 <div class="col-md-4 mb-2 mb-md-0">
                   <div class="input-group input-group-merge">
-                    <input type="text" class="form-control form-control-lg" id="searchJobCareers"
+                    <input type="text" name="type_name" class="form-control form-control-lg" id="searchJobCareers"
                       placeholder="Search Bus Name" aria-label="Search job">
                   </div>
                 </div>
 
                 <div class="col-md-4 mb-2 mb-md-0">
                   <div class="input-group input-group-merge">
-                    <input type="text" class="form-control form-control-lg" id="searchJobCareers"
+                    <input type="text" name="cap" class="form-control form-control-lg" id="searchJobCareers"
                       placeholder="Enter Capacity" aria-label="Search job">
                   </div>
                 </div>
 
                 <div class="col-md-4 mb-2 mb-md-0">
                   <div class="input-group input-group-merge">
-                    <input type="text" class="form-control form-control-lg" id="searchJobCareers"
+                    <input type="text" name="plateNum" class="form-control form-control-lg" id="searchJobCareers"
                       placeholder="Enter Plates" aria-label="Search job">
                   </div>
                 </div>
@@ -106,6 +107,28 @@
           <tbody>
             <?php
             require_once('connection.php');
+
+            $query = "SELECT * FROM bus";
+            $result = mysqli_query($conn, $query);
+
+            if (isset($_POST['search_type'])) {
+              echo 'searching';
+              $bus_name = $_POST['type_name'];
+              $cap = $_POST['cap'];
+              $plateNum = $_POST['plateNum'];
+              $stmt = $conn->prepare("SELECT * FROM bus where bus_name like ? or capacity = ? or plates like ?");
+              $search_term = '%' . $bus_name . '%';
+              $plates_term = '%' . $plateNum . '%';
+              echo $search_term;
+              echo $cap;
+              echo $plates_term;
+              $stmt->bind_param("sis", $search_term, $cap, $plates_term);
+            } else {
+              $stmt = $conn->prepare("SELECT * FROM bus");
+            }
+            $stmt->execute();
+            $result = $stmt->get_result();
+
             if (isset($_POST['delete'])) {
               $delete_id = $_POST['id'];
               $delete_comment = $conn->prepare("DELETE FROM `bus` WHERE ID = ?");
@@ -114,13 +137,6 @@
               $message = 'Bus deleted successfully!';
             }
 
-            // Fetch data from the database
-            $query = "SELECT * FROM bus";
-            $result = mysqli_query($conn, $query);
-
-            $stmt = $conn->prepare("SELECT * FROM bus");
-            $stmt->execute();
-            $result = $stmt->get_result();
             // Initialize the row counter
             $rowNumber = 1;
             while ($row = $result->fetch_assoc()) {
