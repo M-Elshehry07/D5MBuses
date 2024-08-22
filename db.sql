@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2024 at 01:39 PM
+-- Generation Time: Aug 22, 2024 at 02:06 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`ID`, `username`, `Password`, `email`, `phone`, `address`) VALUES
-(9, 'admin', '33aab3c7f01620cade108f488cfd285c0e62c1ec', NULL, NULL, NULL);
+(19, 'allam', 'd033e22ae348aeb5660fc2140aec35850c4da997', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -65,10 +65,7 @@ CREATE TABLE `bus` (
 
 INSERT INTO `bus` (`ID`, `bus_name`, `capacity`, `plates`, `driver_id`, `type_id`, `info`) VALUES
 (3, 'Zayed', 10, 'sdb6485', 0, 0, ''),
-(5, 'Mohamed', 1018874908, '', NULL, NULL, NULL),
-(6, 'Mohamed', 1018874908, '', NULL, NULL, NULL),
-(7, 'Mohamed', 1018874908, '', NULL, NULL, NULL),
-(8, 'Mohamed', 1018874908, '', NULL, NULL, NULL);
+(9, 'Coasterrr', 22, 'sdb8211', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -156,6 +153,20 @@ INSERT INTO `points` (`ID`, `point_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reservation`
+--
+
+CREATE TABLE `reservation` (
+  `ID` int(11) NOT NULL,
+  `bus_id` int(11) NOT NULL,
+  `point_id` int(11) NOT NULL,
+  `ride_id` int(11) NOT NULL,
+  `seats_num` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rides`
 --
 
@@ -224,6 +235,12 @@ ALTER TABLE `points`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `rides`
 --
 ALTER TABLE `rides`
@@ -243,13 +260,13 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `bus`
 --
 ALTER TABLE `bus`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `bus_points`
@@ -274,6 +291,12 @@ ALTER TABLE `driver`
 --
 ALTER TABLE `points`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `reservation`
+--
+ALTER TABLE `reservation`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rides`
