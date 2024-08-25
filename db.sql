@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2024 at 02:06 PM
+-- Generation Time: Aug 25, 2024 at 02:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`ID`, `username`, `Password`, `email`, `phone`, `address`) VALUES
-(19, 'allam', 'd033e22ae348aeb5660fc2140aec35850c4da997', NULL, NULL, NULL);
+(20, 'allam', '292bba749d9e33ffa24a06b088774c0c51958393', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -121,8 +121,7 @@ CREATE TABLE `driver` (
 
 INSERT INTO `driver` (`ID`, `name`, `phone number`) VALUES
 (8, 'Mohamed', '0112341'),
-(9, 'Ahmed', '0112341'),
-(10, '7masa', '01018874908');
+(9, 'Ahmed', '0112341');
 
 -- --------------------------------------------------------
 
@@ -132,23 +131,19 @@ INSERT INTO `driver` (`ID`, `name`, `phone number`) VALUES
 
 CREATE TABLE `points` (
   `ID` int(11) NOT NULL,
-  `point_name` varchar(100) NOT NULL
+  `point_name` varchar(100) NOT NULL,
+  `image_path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `points`
 --
 
-INSERT INTO `points` (`ID`, `point_name`) VALUES
-(1, 'Maadi'),
-(2, 'Zayed'),
-(3, 'Fatma Roshdy'),
-(4, 'Faisal'),
-(5, 'rehab'),
-(6, 'Dokki'),
-(7, 'Mokatam'),
-(9, 'Tahrir SQ'),
-(10, 'Hyper One');
+INSERT INTO `points` (`ID`, `point_name`, `image_path`) VALUES
+(5, 'Rehab', 'images/uploads/maadi-card.jpg'),
+(19, 'Manial', 'images/uploads/backiee-275311-landscape.jpg'),
+(20, 'Zayed', 'images/uploads/aesthetic minimal purple wallpaper illustration, perfect for wallpaper, backdrop, postcard, background for your design.jpeg'),
+(23, 'Haram', 'images/uploads/new-cairo-card.jpg');
 
 -- --------------------------------------------------------
 
@@ -260,7 +255,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `bus`
@@ -290,7 +285,7 @@ ALTER TABLE `driver`
 -- AUTO_INCREMENT for table `points`
 --
 ALTER TABLE `points`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `reservation`
