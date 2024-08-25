@@ -41,9 +41,6 @@
                         placeholder="Search Point" aria-label="Search job">
                     </div>
                   </div>
-
-
-
                 </div>
               </form>
             </div>
@@ -56,7 +53,7 @@
 
         <div class="report-header">
           <h1 class="recent-Articles">Manage Points</h1>
-          <a href="add-driver.php"><button class="view">Add New Point </button></a>
+          <a href="add-point.php"><button class="view">Add New Point </button></a>
         </div>
         <table class="table">
           <thead>
@@ -89,10 +86,23 @@
 
             if (isset($_POST['delete'])) {
               $delete_id = $_POST['id'];
+
+              // Get the image path from the database
+              $image_query = $conn->prepare("SELECT image_path FROM points WHERE ID = ?");
+              $image_query->bind_param("i", $delete_id);
+              $image_query->execute();
+              $image_result = $image_query->get_result();
+              $image_row = $image_result->fetch_assoc();
+              $image_path = $image_row['image_path'];
+              // Delete the image file
+              if (file_exists($image_path)) {
+                unlink($image_path);
+              }
+
               $delete_comment = $conn->prepare("DELETE FROM `points` WHERE ID = ?");
               $delete_comment->bind_param("i", $delete_id);
               $delete_comment->execute();
-              $message = 'Driver deleted successfully!';
+              $message = 'Point deleted successfully!';
             }
 
             // Initialize the row counter
@@ -109,7 +119,8 @@
 
 
                   <td>
-                    <a type='button' href="phpeditpoint.php?id=<?= $row['ID']; ?>" class='btn-sm btn-primary me-1'>Edit</a>
+                    <a type='button' href="phpeditpoint.php?id=<?= $row['ID']; ?>"
+                      class='btn-sm btn-primary me-1'>Edit</a>
                     <button id='rmButton' name="delete" type='submit' class='btn-sm btn-danger'
                       onclick="return confirm('Delete <?= $row['point_name']; ?>');">Delete</button>
                   </td>

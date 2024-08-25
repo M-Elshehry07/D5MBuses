@@ -42,20 +42,6 @@
           <li class="nav-item">
             <a href="admin.php"><button class="loginBtn">Login</button></a>
           </li>
-
-          <!-- Me Dropdown Menu -->
-
-          <!-- <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-uppercase" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Me
-              </a>
-              <ul class="dropdown-menu text-uppercase">
-                <li><a class="dropdown-item" href="#">Reservations</a></li>
-                <li><a class="dropdown-item" href="#">History</a></li>
-                <li><a class="dropdown-item" href="#">Close</a></li>
-              </ul>
-            </li> -->
-
         </ul>
       </div>
     </div>
@@ -373,41 +359,34 @@
     <div id="slider-container">
       <span onclick="slideLeft()" class="btn"></span>
       <div id="slider">
-        <div class="slide">
-          <a target="_blank" href="https://www.google.com" class="slide-link" data-bs-toggle="modal"
-            data-bs-target="#rehab-modal">
-            <img src="images/new-cairo-card.jpg" alt="Rehab Route">
-            <div class="slide-title">Rehab</div>
-          </a>
-        </div>
-        <div class="slide">
-          <a target="_blank" href="https://www.google.com" class="slide-link" data-bs-toggle="modal"
-            data-bs-target="#new-cairo-modal">
-            <img src="images/new-cairo-card2.jpg" alt="New Cairo Route">
-            <div class="slide-title">New Cairo</div>
-          </a>
-        </div>
-        <div class="slide">
-          <a target="_blank" href="https://www.google.com" class="slide-link" data-bs-toggle="modal"
-            data-bs-target="#maadi-modal">
-            <img src="images/maadi-card.jpg" alt="Maadi Route">
-            <div class="slide-title">Maadi</div>
-          </a>
-        </div>
-        <div class="slide">
-          <a target="_blank" href="https://www.google.com" class="slide-link" data-bs-toggle="modal"
-            data-bs-target="#haram-modal">
-            <img src="images/haram-card.webp" alt="Haram Route">
-            <div class="slide-title">Haram</div>
-          </a>
-        </div>
-        <div class="slide">
-          <a target="_blank" href="https://example.com/faisal-route" class="slide-link" data-bs-toggle="modal"
-            data-bs-target="#faisal-modal">
-            <img src="images/faisal-card.webp" alt="Faisal Route">
-            <div class="slide-title">Faisal</div>
-          </a>
-        </div>
+        <?php
+        require_once('connection.php');
+
+        // Fetch the point names and image paths from the database
+        $query = "SELECT point_name, image_path FROM points";
+        $result = $conn->query($query);
+
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            $pointName = $row['point_name'];
+            $imagePath = $row['image_path'];
+            ?>
+            <div class="slide">
+              <a target="_blank" href="https://www.google.com" class="slide-link" data-bs-toggle="modal"
+                data-bs-target="#rehab-modal">
+                <img src="<?= $imagePath ?>" alt="<?= $pointName ?> Route">
+                <div class="slide-title"><?= $pointName ?></div>
+              </a>
+            </div>
+            <?php
+          }
+        } else {
+          echo "No points found.";
+        }
+
+        $conn->close();
+        ?>
+
       </div>
       <span onclick="slideRight()" class="btn"></span>
     </div>
