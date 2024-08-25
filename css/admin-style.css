@@ -274,6 +274,14 @@ table tbody tr:hover {
     background-color: var(--Border-color);
 }
 
+.active {
+    color: white;
+}
+
+.active:hover {
+    color: white;
+}
+
 .box {
     height: 130px;
     width: 230px;
