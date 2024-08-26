@@ -127,7 +127,7 @@
         $result = mysqli_query($conn, $query);
 
         if (isset($_POST['search_type'])) {
-          $query = "SELECT b.*, d.name, t.name as 'tname' FROM bus b JOIN driver d ON b.driver_id = d.ID JOIN type t ON b.type_id = t.ID WHERE ";
+          $query = "SELECT b.*, d.name, t.name as 'tname' FROM bus b LEFT JOIN driver d ON b.driver_id = d.ID LEFT JOIN type t ON b.type_id = t.ID WHERE ";
           $conditions = [];
           $params = [];
           $types = '';
@@ -169,12 +169,12 @@
 
 
 
-          // Join the conditions to build the final query
+          // LEFT JOIN the conditions to build the final query
           if (!empty($conditions)) {
             $query .= implode(' OR ', $conditions);
           } else {
             // No conditions were added, so just select everything
-            $query = "SELECT b.*, d.name, t.name as 'tname' FROM bus b JOIN driver d ON b.driver_id = d.ID JOIN type t ON b.type_id = t.ID ";
+            $query = "SELECT b.*, d.name, t.name as 'tname' FROM bus b LEFT JOIN driver d ON b.driver_id = d.ID LEFT JOIN type t ON b.type_id = t.ID ";
           }
 
           $stmt = $conn->prepare($query);
@@ -184,7 +184,7 @@
             $stmt->bind_param($types, ...$params);
           }
         } else {
-          $stmt = $conn->prepare("SELECT b.*, d.name, t.name as 'tname' FROM bus b JOIN driver d ON b.driver_id = d.ID JOIN type t ON b.type_id = t.ID ");
+          $stmt = $conn->prepare("SELECT b.*, d.name, t.name as 'tname' FROM bus b LEFT JOIN driver d ON b.driver_id = d.ID LEFT JOIN type t ON b.type_id = t.ID ");
         }
 
         $stmt->execute();
@@ -197,7 +197,7 @@
           $delete_comment->execute();
           $message = 'Bus deleted successfully!';
         }
-        // $query2 = $conn->prepare("SELECT b.*, d.name FROM bus b JOIN driver d ON b.driver_id = d.ID");
+        // $query2 = $conn->prepare("SELECT b.*, d.name FROM bus b LEFT JOIN driver d ON b.driver_id = d.ID");
         
 
         // Initialize the row counter
