@@ -71,27 +71,62 @@
             <div class="modal-body">
               <form action="#">
                 <div class="row g-2 mb-2">
-                  <div class="col-sm-6">
+                  <div class="col-sm-12">
                     <div class="form-floating">
                       <input id="fname-<?= $routeId ?>" type="name" class="form-control" placeholder="Enter your full name" required>
                       <label for="fname-<?= $routeId ?>">Enter your full name <span class="text-danger">*</span></label>
                     </div>
                   </div>
-                  <div class="col-sm-6">
+                  <div class="col-sm-12">
                     <div class="form-floating">
                       <input id="phnumber-<?= $routeId ?>" type="tel" class="form-control" placeholder="Enter your phone number" required>
                       <label for="phnumber-<?= $routeId ?>">Enter your phone number <span class="text-danger">*</span></label>
                     </div>
                   </div>
                 </div>
-                <div class="row g-2">
+                <div class="row g-2 mb-2">
                   <!-- <div class="col-sm-6">
                     <div class="form-floating">
                       <input id="email-<?= $routeId ?>" type="email" class="form-control" placeholder="Enter your email address">
                       <label for="email-<?= $routeId ?>">Enter your email address</label>
                     </div>
                   </div> -->
-                  <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <div class="form-floating">
+                      <select id="trip-time-<?= $routeId ?>" class="form-select">
+                        <?php
+                        // SQL query to get point names from the bus_points table
+                        $sql4 = "SELECT p.point_name, bp.point_id 
+                                 FROM bus_points bp 
+                                JOIN points p ON bp.point_id = p.ID where bp.bus_id = $routeId";
+                        $result4 = mysqli_query($conn, $sql4);
+
+                        if (mysqli_num_rows($result4) > 0) {
+                          while ($row = mysqli_fetch_assoc($result4)) {
+                        ?>
+                            <option value="<?= htmlspecialchars($row['point_id']) ?>">
+                              <?= htmlspecialchars($row['point_name']) ?>
+                            </option>
+                        <?php
+                          }
+                        } else {
+                          echo "<option>No points available</option>";
+                        }
+                        ?>
+                      </select>
+
+                      <label for="trip-time-<?= $routeId ?>">Choose a location <span class="text-danger">*</span></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row g-2 mb-2">
+                  <!-- <div class="col-sm-6">
+                    <div class="form-floating">
+                      <input id="email-<?= $routeId ?>" type="email" class="form-control" placeholder="Enter your email address">
+                      <label for="email-<?= $routeId ?>">Enter your email address</label>
+                    </div>
+                  </div> -->
+                  <div class="col-sm-12">
                     <div class="form-floating">
                       <select id="trip-time-<?= $routeId ?>" class="form-select">
                         <?php
@@ -107,9 +142,23 @@
                     </div>
                   </div>
                 </div>
+                <div class="row g-2 mb-2">
+                  <!-- <div class="col-sm-6">
+                    <div class="form-floating">
+                      <input id="email-<?= $routeId ?>" type="email" class="form-control" placeholder="Enter your email address">
+                      <label for="email-<?= $routeId ?>">Enter your email address</label>
+                    </div>
+                  </div> -->
+                  <div class="col-sm-12">
+                    <div class="form-floating">
+                      <input id="phnumber-<?= $routeId ?>" type="number" class="form-control" placeholder="Enter your phone number" required>
+                      <label for="phnumber-<?= $routeId ?>">Choose number of seats <span class="text-danger">*</span></label>
+                    </div>
+                  </div>
+                </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Reserve!</button>
+                  <button type="submit" name = 'reserve' class="btn btn-primary" onclick="reserveAlert()">Reserve!</button>
                 </div>
               </form>
             </div>
@@ -325,6 +374,10 @@
 
 
   <script src="js/carousel.js"></script>
+  <script> function reserveAlert() {
+      alert("Reserved successfully");
+    }
+    </script>
 
 </body>
 
