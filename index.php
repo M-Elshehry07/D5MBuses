@@ -48,308 +48,91 @@
   </nav>
 
   <!-- Rehab Modal -->
+  <!-- Modal Template (will be duplicated by PHP) -->
+  <?php
+  // Fetch the point names and image paths from the database
+  require_once('connection.php');
+  $query = "SELECT ID, bus_name, image_path FROM bus";
+  $result = $conn->query($query);
 
-  <div class="modal fade pt-5 mt-5" tabindex="-1" id="rehab-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Rehab Route</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-          <form action="#">
-
-
-            <div class="row g-2 mb-2">
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="fname1" type="name" class="form-control" placeholder="Enter your full name" required>
-                  <label for="fname1">Enter your full name <span class="text-danger">*</span></label>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="phnumber1" type="tel" class="form-control" placeholder="Enter your phone number" required>
-                  <label for="phnumber1">Enter your phone number <span class="text-danger">*</span></label>
-                </div>
-              </div>
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      $routeId = $row['ID'];
+      $pointName = $row['bus_name'];
+      $imagePath = $row['image_path'];
+  ?>
+      <div class="modal fade pt-5 mt-5" tabindex="-1" id="rehab-modal-<?= $routeId ?>">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"> <?= $pointName ?> Route</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
-
-            <div class="row g-2">
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="email1" type="email" class="form-control" placeholder="Enter your email address">
-                  <label for="email1">Enter your email address</label>
+            <div class="modal-body">
+              <form action="#">
+                <div class="row g-2 mb-2">
+                  <div class="col-sm-6">
+                    <div class="form-floating">
+                      <input id="fname-<?= $routeId ?>" type="name" class="form-control" placeholder="Enter your full name" required>
+                      <label for="fname-<?= $routeId ?>">Enter your full name <span class="text-danger">*</span></label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-floating">
+                      <input id="phnumber-<?= $routeId ?>" type="tel" class="form-control" placeholder="Enter your phone number" required>
+                      <label for="phnumber-<?= $routeId ?>">Enter your phone number <span class="text-danger">*</span></label>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <select id="trip-time1" class="form-select">
-                    <option>Day Trip - 7AM</option>
-                    <option>Evening Trip - 5PM</option>
-                  </select>
-                  <label for="trip-time1">Pick a trip time <span class="text-danger">*</span></label>
+                <div class="row g-2">
+                  <!-- <div class="col-sm-6">
+                    <div class="form-floating">
+                      <input id="email-<?= $routeId ?>" type="email" class="form-control" placeholder="Enter your email address">
+                      <label for="email-<?= $routeId ?>">Enter your email address</label>
+                    </div>
+                  </div> -->
+                  <div class="col-sm-6">
+                    <div class="form-floating">
+                      <select id="trip-time-<?= $routeId ?>" class="form-select">
+                        <?php
+                        $sql3 = "SELECT * FROM rides";
+                        $result3 = mysqli_query($conn, $sql3);
+                        while ($row = mysqli_fetch_assoc($result3)) {
+                        ?>
+                          <option><?= $row['time'] ?></option>
+                        <?php
+                        } ?>
+                      </select>
+                      <label for="trip-time-<?= $routeId ?>">Pick a trip time <span class="text-danger">*</span></label>
+                    </div>
+                  </div>
                 </div>
-              </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Reserve!</button>
+                </div>
+              </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Reserve!</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- New Cairo Modal -->
-
-  <div class="modal fade  pt-5 mt-5" tabindex="-1" id="new-cairo-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">New Cairo Route</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-          <form action="#">
-
-
-            <div class="row g-2 mb-2">
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="fname2" type="name" class="form-control" placeholder="Enter your full name" required>
-                  <label for="fname2">Enter your full name <span class="text-danger">*</span></label>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="phnumber2" type="tel" class="form-control" placeholder="Enter your phone number" required>
-                  <label for="phnumber2">Enter your phone number <span class="text-danger">*</span></label>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="row g-2">
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="email2" type="email" class="form-control" placeholder="Enter your email address">
-                  <label for="email2">Enter your email address</label>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <select id="trip-time2" class="form-select">
-                    <option>Day Trip - 7AM</option>
-                    <option>Evening Trip - 5PM</option>
-                  </select>
-                  <label for="trip-time2">Pick a trip time <span class="text-danger">*</span></label>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Reserve!</button>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+  <?php
+    }
+  } else {
+    echo "No points found.";
+  }
+  ?>
 
-  <!-- Maadi Modal -->
-
-  <div class="modal fade  pt-5 mt-5" tabindex="-1" id="maadi-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Maadi Route</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-          <form action="#">
-
-
-            <div class="row g-2 mb-2">
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="fname3" type="name" class="form-control" placeholder="Enter your full name" required>
-                  <label for="fname3">Enter your full name <span class="text-danger">*</span></label>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="phnumber3" type="tel" class="form-control" placeholder="Enter your phone number" readonly>
-                  <label for="phnumber3">Enter your phone number <span class="text-danger">*</span></label>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="row g-2">
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="email3" type="email" class="form-control" placeholder="Enter your email address">
-                  <label for="email3">Enter your email address</label>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <select id="trip-time3" class="form-select">
-                    <option>Day Trip - 7AM</option>
-                    <option>Evening Trip - 5PM</option>
-                  </select>
-                  <label for="trip-time3">Pick a trip time <span class="text-danger">*</span></label>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Reserve!</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Haram Modal -->
-
-  <div class="modal fade  pt-5 mt-5" tabindex="-1" id="haram-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Haram Route</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-          <form action="#">
-
-
-            <div class="row g-2 mb-2">
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="fname4" type="name" class="form-control" placeholder="Enter your full name" required>
-                  <label for="fname4">Enter your full name <span class="text-danger">*</span></label>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="phnumber4" type="tel" class="form-control" placeholder="Enter your phone number" required>
-                  <label for="phnumber4">Enter your phone number <span class="text-danger">*</span></label>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="row g-2">
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="email4" type="email" class="form-control" placeholder="Enter your email address">
-                  <label for="email4">Enter your email address</label>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <select id="trip-time4" class="form-select">
-                    <option>Day Trip - 7AM</option>
-                    <option>Evening Trip - 5PM</option>
-                  </select>
-                  <label for="trip-time4">Pick a trip time <span class="text-danger">*</span></label>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Reserve!</button>
-            </div>
-
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Faisal Modal -->
-
-  <div class="modal fade  pt-5 mt-5" tabindex="-1" id="faisal-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Faisal Route</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-          <form action="#">
-
-
-            <div class="row g-2 mb-2">
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="fname5" type="name" class="form-control" placeholder="Enter your full name" required>
-                  <label for="fname5">Enter your full name <span class="text-danger">*</span></label>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="phnumber5" type="tel" class="form-control" placeholder="Enter your phone number" required>
-                  <label for="phnumber5">Enter your phone number <span class="text-danger">*</span></label>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="row g-2">
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <input id="email5" type="email" class="form-control" placeholder="Enter your email address">
-                  <label for="email5">Enter your email address</label>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-floating">
-                  <select id="trip-time5" class="form-select">
-                    <option>Day Trip - 7AM</option>
-                    <option>Evening Trip - 5PM</option>
-                  </select>
-                  <label for="trip-time5">Pick a trip time <span class="text-danger">*</span></label>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Reserve!</button>
-            </div>
-
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
+  <!-- Carousel and Route Section -->
   <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item c-item active" data-bs-interval="4000">
         <img src="images/1.jpg" class="d-block w-100 c-image" alt="image">
         <div class="carousel-content">
           <h2 class="carousel-heading">Fast, Convenient, and Efficient</h2>
-          <p class="carousel-subhead">Make sure you are always on time while maintaining the maximum level of comfort
-            and entertainment in MARAKEZ's high-end transportation services. Operating all over Egypt's bustling
-            capital, "Cairo," anywhere and anytime, you will find us striving for your comfort.</p>
-          <button type="button" class="btn btn-primary rounded-5 me-1"
-            onClick="document.getElementById('routes-section').scrollIntoView();">Book Your Seat Now!</button>
-          <button type="button" class="btn btn-outline-light rounded-5 ms-1"
-            onClick="document.getElementById('contact-section').scrollIntoView();">Contact Us</button>
+          <p class="carousel-subhead">Make sure you are always on time while maintaining the maximum level of comfort and entertainment in MARAKEZ's high-end transportation services. Operating all over Egypt's bustling capital, "Cairo," anywhere and anytime, you will find us striving for your comfort.</p>
+          <button type="button" class="btn btn-primary rounded-5 me-1" onClick="document.getElementById('routes-section').scrollIntoView();">Book Your Seat Now!</button>
+          <button type="button" class="btn btn-outline-light rounded-5 ms-1" onClick="document.getElementById('contact-section').scrollIntoView();">Contact Us</button>
         </div>
       </div>
     </div>
@@ -360,37 +143,27 @@
       <span onclick="slideLeft()" class="btn"></span>
       <div id="slider">
         <?php
-        require_once('connection.php');
-
-        // Fetch the point names and image paths from the database
-        $query = "SELECT point_name, image_path FROM points";
-        $result = $conn->query($query);
-
-        if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
-            $pointName = $row['point_name'];
-            $imagePath = $row['image_path'];
-            ?>
-            <div class="slide">
-              <a target="_blank" href="https://www.google.com" class="slide-link" data-bs-toggle="modal"
-                data-bs-target="#rehab-modal">
-                <img src="<?= $imagePath ?>" alt="<?= $pointName ?> Route">
-                <div class="slide-title"><?= $pointName ?></div>
-              </a>
-            </div>
-            <?php
-          }
-        } else {
-          echo "No points found.";
-        }
-
-        $conn->close();
+        // Loop through routes again for slider
+        $result->data_seek(0); // Reset the result pointer to the start
+        while ($row = $result->fetch_assoc()) {
+          $routeId = $row['ID'];
+          $pointName = $row['bus_name'];
+          $imagePath = $row['image_path'];
         ?>
-
+          <div class="slide">
+            <a target="_blank" href="https://www.google.com" class="slide-link" data-bs-toggle="modal" data-bs-target="#rehab-modal-<?= $routeId ?>">
+              <img src="<?= $imagePath ?>" alt="<?= $pointName ?> Route">
+              <div class="slide-title"><?= $pointName ?></div>
+            </a>
+          </div>
+        <?php
+        }
+        ?>
       </div>
       <span onclick="slideRight()" class="btn"></span>
     </div>
   </div>
+
 
   <!-- Contact 3 - Bootstrap Brain Component -->
   <section id="contact-section" class="bg-light pb-5 px-4 px-md-1">
@@ -541,7 +314,9 @@
       <!-- Copyright -->
       <div class="text-start py-2 fs-6" style="background-color: rgba(0, 0, 0, 0.2);">
         ©
-        <script>document.write(new Date().getFullYear())</script> Copyright:
+        <script>
+          document.write(new Date().getFullYear())
+        </script> Copyright:
         <a class="text-white" target="_blank" href="https://marakez.net/">Marakez</a>
       </div>
       <!-- Copyright -->

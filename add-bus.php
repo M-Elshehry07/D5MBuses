@@ -78,7 +78,7 @@ require_once('connection.php');
                         <div class="text-center">
                             <img src="images/marakez-logo.png" alt="marakez-logo">
                             <h2 class="text-center">Add Bus</h2>
-                            <form id="busForm" action="phpBus.php" class="form" method="get">
+                            <form id="busForm" action="phpBus.php" class="form" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <span class="input-group-addon"><i
@@ -98,6 +98,13 @@ require_once('connection.php');
                                         <input id="forgetAnswer" name="numSeats" placeholder="Enter number of seats"
                                             class="form-control" type="text" required>
                                     </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-envelope color-blue"></i>
+                                        </span>
+                                        <input type="file" name="image" id="image" accept="image/*" required>
+                                    </div>
+
                                 </div>
                                 <div class="form-group">
                                     <input class="btn btn-lg btn-block btnForget" value="Submit" type="submit">

@@ -99,12 +99,7 @@ require_once('connection.php');
                                         <input id="busID" name="Name" value="<?= $row['point_name'] ?>"
                                             placeholder="Enter point Name" class="form-control" type="text" required>
                                     </div>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-envelope color-blue"></i>
-                                        </span>
-                                        <input type="file" name="image" id="image" accept="image/*" required>
-                                    </div>
+                                    
                                 </div>
                                 <div class="form-group">
                                     <input class="btn btn-lg btn-block btnForget" value="Submit" type="submit">
