@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2024 at 02:46 PM
+-- Generation Time: Aug 27, 2024 at 12:38 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`ID`, `username`, `Password`, `email`, `phone`, `address`) VALUES
-(20, 'allam', '292bba749d9e33ffa24a06b088774c0c51958393', NULL, NULL, NULL);
+(20, 'allam', '292bba749d9e33ffa24a06b088774c0c51958393', NULL, NULL, NULL),
+(21, 'H', 'd8235e35463c2e58f185bc0bcff9f7bba0f56f04', NULL, NULL, NULL),
+(22, 'belal', 'c8bf748e36d9a6cf8f68d2c00e28ca67adba0c15', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -56,16 +58,19 @@ CREATE TABLE `bus` (
   `plates` varchar(10) NOT NULL,
   `driver_id` int(11) DEFAULT NULL,
   `type_id` int(11) DEFAULT NULL,
-  `info` text DEFAULT NULL
+  `info` text DEFAULT NULL,
+  `image_path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `bus`
 --
 
-INSERT INTO `bus` (`ID`, `bus_name`, `capacity`, `plates`, `driver_id`, `type_id`, `info`) VALUES
-(3, 'Zayed', 10, 'sdb6485', 0, 0, ''),
-(9, 'Coasterrr', 22, 'sdb8211', NULL, NULL, NULL);
+INSERT INTO `bus` (`ID`, `bus_name`, `capacity`, `plates`, `driver_id`, `type_id`, `info`, `image_path`) VALUES
+(3, 'Zayed', 10, 'sdb6485', 8, 1, '', 'images/uploads/new-cairo-card2.jpg'),
+(9, 'Manial', 22, 'sdb8211', 8, 1, NULL, 'images/uploads/faisal-card.webp'),
+(10, 'Haram', 17, 'sdb2301', 8, 1, NULL, 'images/uploads/haram-card.webp'),
+(13, 'Nasr City', 17, 'sdb2131', NULL, NULL, NULL, 'images/uploads/new-cairo-card.jpg');
 
 -- --------------------------------------------------------
 
@@ -84,12 +89,12 @@ CREATE TABLE `bus_points` (
 --
 
 INSERT INTO `bus_points` (`ID`, `bus_id`, `point_id`) VALUES
-(1, 1, 1),
-(2, 1, 4),
-(3, 2, 2),
-(4, 2, 4),
-(5, 3, 3),
-(6, 3, 5);
+(1, 3, 5),
+(2, 3, 25),
+(3, 9, 19),
+(4, 9, 20),
+(5, 10, 23),
+(6, 10, 24);
 
 -- --------------------------------------------------------
 
@@ -131,19 +136,22 @@ INSERT INTO `driver` (`ID`, `name`, `phone number`) VALUES
 
 CREATE TABLE `points` (
   `ID` int(11) NOT NULL,
-  `point_name` varchar(100) NOT NULL,
-  `image_path` varchar(255) NOT NULL
+  `point_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `points`
 --
 
-INSERT INTO `points` (`ID`, `point_name`, `image_path`) VALUES
-(5, 'Rehab', 'images/uploads/maadi-card.jpg'),
-(19, 'Manial', 'images/uploads/backiee-275311-landscape.jpg'),
-(20, 'Zayed', 'images/uploads/aesthetic minimal purple wallpaper illustration, perfect for wallpaper, backdrop, postcard, background for your design.jpeg'),
-(23, 'Haram', 'images/uploads/new-cairo-card.jpg');
+INSERT INTO `points` (`ID`, `point_name`) VALUES
+(5, 'Rehab'),
+(19, 'Manial'),
+(20, 'Zayed'),
+(23, 'Haram'),
+(24, 'Giza'),
+(25, 'remaya'),
+(26, 'Saft ellabn'),
+(27, 'maadi');
 
 -- --------------------------------------------------------
 
@@ -188,6 +196,15 @@ CREATE TABLE `type` (
   `ID` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`ID`, `name`) VALUES
+(1, 'Coaster'),
+(2, 'Sprinter'),
+(3, 'HIACE');
 
 --
 -- Indexes for dumped tables
@@ -255,13 +272,13 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `bus`
 --
 ALTER TABLE `bus`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `bus_points`
@@ -285,7 +302,7 @@ ALTER TABLE `driver`
 -- AUTO_INCREMENT for table `points`
 --
 ALTER TABLE `points`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `reservation`
@@ -303,7 +320,7 @@ ALTER TABLE `rides`
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
